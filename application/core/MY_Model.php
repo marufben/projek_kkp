@@ -81,6 +81,38 @@ class MY_Model extends CI_Model
 		}
 		
 	}
+	public function delete($value)
+	{
+		try {
+			$this->db->where($this->primary_key, $value);
+			$this->db->delete($this->table_name);
+			
+			//$this->save_log($value, 'Update', $this->_sess['username'].' has Updated Record for table '.$this->table_name);
+			
+			return $this->db->affected_rows();
+		} catch (exception $ex){
+			//$this->save_log($value, 'Error', $this->_sess['username'].' want to Update Record for table '.$this->table_name.'. '.$ex);
+			return FALSE;
+		}
+		
+	}
+
+	public function getAll()
+	{
+		try{
+			return	$this->db->get($this->table_name)->result();
+		}catch(exception $e){
+
+			return false;
+		}
+	}
+
+	public function get_by_pk($value = '')
+	{	
+		$this->db->where($this->primary_key, $value);
+		$result = $this->db->get($this->table_name)->row();
+		return $result;
+	}
 
 	function get_data_fields()
 	{
