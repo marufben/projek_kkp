@@ -10,6 +10,14 @@ class MY_Model extends CI_Model
 
 
 	}
+	
+	public function last_id()
+	{
+		$data = $this->custom_query('select '.$this->primary_key.' from '.$this->table_name.' order by '.$this->primary_key.' desc limit 1');
+		$data = $data[0];
+		return $data;
+	}
+
 	public function insert_id()
 	{
 		$data = $this->custom_query('select '.$this->primary_key.' from '.$this->table_name.' order by '.$this->primary_key.' desc limit 1');
