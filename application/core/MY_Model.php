@@ -83,4 +83,15 @@ class MY_Model extends CI_Model
 		 
 		return $model;
 	}
+
+	// getting attribute labels
+	public function get_arraydata_fields()
+	{
+		$model = new stdClass();
+		foreach ($this->attribute_labels() as $key => $value) {
+			$model->$key = $this->input->post($key);
+		}
+
+		return $model;
+	}
 }
