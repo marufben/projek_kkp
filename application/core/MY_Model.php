@@ -73,12 +73,6 @@ class MY_Model extends CI_Model
 		}
 		
 	}
-	
-
-	function hello()
-	{
-		echo "heloooo cuk ";
-	}
 
 	function get_data_fields()
 	{
