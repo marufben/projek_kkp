@@ -15,7 +15,7 @@ class MY_Model extends CI_Model
 	{
 		$data = $this->custom_query('select '.$this->primary_key.' from '.$this->table_name.' order by '.$this->primary_key.' desc limit 1');
 		$data = $data[0];
-		return $data;
+		return $data; //object of id
 	}
 
 	public function insert_id()
