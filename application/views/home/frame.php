@@ -1,95 +1,95 @@
-<?php
-// echo "<pre>";
-// var_dump($dir);
-// echo "</pre>";
-?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-success panel-clean">
+            <div class="panel-heading">
+                Lihat Data
 
-<div class="span9">
-	<div class="widget widget-nopad">
-		<div class="widget-header"> <i class="icon-list-alt"></i>
-			<h3> Input Form</h3>
-		</div>
-		<div class="widget-content">
-		<div class="widget big-stats-container">
-			<div class="widget-content" style="padding: 0px">
+                <div class="panel-options">
+                    <a href="#" data-rel="collapse"><i class="fa fa-fw fa-minus"></i></a>
+                    <!-- <a href="#" data-rel="reload"><i class="fa fa-fw fa-refresh"></i></a> -->
+                    <a href="#" data-rel="close"><i class="fa fa-fw fa-times"></i></a>
+                </div>
+            </div>
+            <div class="panel-body">
+            	<form id="formAJax" name="form1" action="<?php echo base_url();?>home/frame" method="post" target="iframeku">
+	                <div class="row">
+	                    <div class="col-sm-6">
+	                        <div class="form-group">
+	                            <label class="control-label" for="exampleInputName6">Perusahaan</label>
+	                            <select id="pt" name="pt" class="form-control">
+	                            	<option value="0">--Pilih--</option>
+	                            	<?php foreach ($dir as $key => $value) { ?>
+	                            	<option value="<?php echo $value;?>"><?php echo $value;?></option>
+	                            	<?php } ?>
+	                            </select>
 
-			<form id="formAJax" name="form1" action="<?php echo base_url();?>home/frame" method="post" target="iframeku">
-				<fieldset>
-				<div class="span4">
-					<div class="control-group">											
-						<label class="control-label" for="nama">Perusahaan</label>
-						<div class="controls">
-							<input type="text" class="span4" id="pt" name="pt" placeholder="nanti dropdown / autocomplete">
-						</div>			
-					</div>
-				</div>
-				<div class="span4">
-					<div class="control-group">											
-						<label class="control-label" for="parent">Jenis Izin</label>
-						<div class="controls">
-							<input type="text" class="span4" id="jenis" name="jenis" placeholder="nanti dropdown">
-						</div>											
-					</div>
-				</div>
-				<div class="span4">
-					<div class="control-group">											
-						<label class="control-label" for="urutan">Nama Kapal</label>
-						<div class="controls">
-							<input type="text" class="span4" id="kapal" name="kapal" placeholder="nanti dropdown / autocomplete">
-						</div>											
-					</div>
-				</div>
-				<div class="span4">
-					<div class="control-group">											
-						<label class="control-label" for="urutan">Tahun</label>
-						<div class="controls">
-							<input type="text" class="span4" id="tahun" name="tahun" placeholder="nanti dropdown">
-						</div>											
-					</div>
-				</div>
-				<div class="span4">
-					<div class="control-group">											
-						<label class="control-label" for="urutan">File</label>
-						<div class="controls">
-							<input type="text" class="span4" id="file" name="file" placeholder="nanti dropdown">
-						</div>											
-					</div>
-				</div>
-				<div class="span4">
-					<div class="control-group">											
-						<label class="control-label" for="urutan">Lihat Dokumen</label>
-						<div class="controls">
-							<button id="send" class="btn">Lihat</button>
-						</div>											
-					</div>
-				</div>
-				</fieldset>
-
-
-			</fom>
-
-				<iframe src="<?php echo base_url();?>home/frame" style="display: none" name="iframeku" id="frame" class="iframeku" frameborder="0"></iframe>
-			
-			</div>
-		</div>
-		</div>
-	</div>
+	                        </div>
+	                    </div>
+	                    <div class="col-sm-6">
+	                        <div class="form-group">
+	                            <label class="control-label" for="exampleInputCompany6">Jenis Izin</label>
+	                            <select id="jenis" name="jenis" class="form-control" disabled>
+	                            	
+	                            </select>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="row">
+	                    <div class="col-sm-6">
+	                        <div class="form-group">
+	                            <label class="control-label" for="exampleInputEmail6">Nama Kapal</label>
+	                            <select id="kapal" name="kapal" class="form-control" disabled>
+	                            	
+	                            </select>
+	                        </div>
+	                    </div>
+	                    <div class="col-sm-6">
+	                        <div class="form-group">
+	                            <label class="control-label" for="exampleInputWebsite6">Tahun</label>
+	                            <select id="tahun" name="tahun" class="form-control" disabled>
+	                            	
+	                            </select>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="row">
+	                    <div class="col-sm-6">
+	                        <div class="form-group">
+	                            <label class="control-label" for="exampleInputEmail6">File</label>
+	                            <select id="file" name="file" class="form-control" disabled>
+	                            	
+	                            </select>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="form-group text-right">
+                        <button type="button" id="send" class="btn btn-primary">Lihat</button>
+                    </div>
+            	</form>
+            </div>
+        </div>
+    </div>
 </div>
 
-<!--<div class="span6">
-	<div class="widget">
-		<div class="widget-header"> <i class="icon-bookmark"></i>
-			<h3> Shortcuts Apps</h3>
-		</div>
-		<div class="widget-content">
-		<div class="widget big-stats-container">
-			<div class="widget-content">
-				<iframe src="<?php echo base_url();?>home/frame" class="iframeku" frameborder="0"></iframe>
-			</div>
-		</div>
-		</div>
-	</div>
-</div>-->
+<div class="row" id="res-frame" style="display: none">
+    <div class="col-md-12">
+        <div class="panel panel-success panel-clean">
+            <div class="panel-heading">
+                Hasil Pencarian
+
+                <div class="panel-options">
+                    <a href="#" data-rel="collapse"><i class="fa fa-fw fa-minus"></i></a>
+                    <!-- <a href="#" data-rel="reload"><i class="fa fa-fw fa-refresh"></i></a> -->
+                    <a href="#" data-rel="close"><i class="fa fa-fw fa-times"></i></a>
+                </div>
+            </div>
+            <div class="panel-body">
+            	<iframe src="<?php echo base_url();?>home/frame" style="display: none" name="iframeku" id="frame" class="iframeku" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- template baru -->
 
 <script type="text/javascript">
 $(function(){
@@ -97,8 +97,105 @@ $(function(){
 		$('#formAJax').submit();
 
 
+		$('#res-frame').css('display', 'block');
 		$('#frame').css('display', 'block');
 		e.preventDefault();
 	})
+
+	// Ubah Nama Perusahaan
+	$('#pt').on('change', function(){
+		var n = $(this);
+		listDir(n.val(), $('#jenis'))
+	})
+
+	// Ubah Jenis Izin
+	$('#jenis').on('change', function(){
+		var n = $(this);
+		listDir(n.val(), $('#kapal'))
+	})
+
+	// Ubah Kapal
+	$('#kapal').on('change', function(){
+		var n = $(this);
+		listDir(n.val(), $('#tahun'))
+	})
+
+	// Ubah Tahun
+	$('#tahun').on('change', function(){
+		var n = $(this);
+		listDir(n.val(), $('#file'))
+	})
+
+	var url = "<?php echo base_url();?>home/dirFiles";
+	var listDir = function(par, id){
+		$.ajax({
+			url: url,
+			type: 'post',
+			data:{
+				par: par
+			},
+			success: function(res){
+				var obj = JSON.parse(res),
+					html = '<option value="0">--Pilih--</option>',
+					len;
+
+				len = Object.keys(obj).length;
+				if(len > 0){
+
+					$.each(obj, function(i, val) {
+				    	html += '<option value="'+par+'/'+val+'">'+val+'</option>'; 
+				    });
+				    id.html(html)
+				    id.attr('disabled', false)
+				}else{
+					alert('Belum ada folder')
+					$('#formAJax')[0].reset()
+				}
+			    
+				console.log();
+			}
+		})
+	}
+
+	// AutoComplete
+	// var s = "<?php echo base_url();?>home/dirFiles";
+	// $("#pt").autocomplete({
+	// 	source: function(req, res){
+	// 	      $.ajax({
+	// 	        url: s,
+	// 	        dataType: "json",
+	// 	        async: true,
+	// 	        data: {term: req.term},
+	// 	        success: function(data){
+	// 	          if(data){
+	// 	            var found = $.map(data, function(item){
+	// 	                    return {
+	// 	                      label:item.label,
+	// 	                      value: item.value,
+	// 	                      desc: item.desc
+	// 	                    };
+	// 	                  });
+	// 	            res(found);           
+	// 	          }else{
+	// 	            // var d = $("#izinPPKH").val() + " belum terdaftar";
+	// 	            // $('#erPPKH').html(d)
+	// 	          }
+	// 	        },
+	// 	        error: function(){
+	// 	          res([]);
+	// 	        }
+	// 	      });
+	// 	},
+	// 	minLength: 1,
+	// 	focus: function(event, ui){
+	// 		$('#pt').val(ui.item.label);
+	// 		return false;
+	// 	},
+	// 	select: function(event, ui){
+	// 		$('#pt').val(ui.item.value);
+	// 		// $('#alamat').val(ui.item.desc);
+	// 		// return false;
+	// 	}
+	// });
 })
 </script>

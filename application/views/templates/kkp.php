@@ -1,7 +1,5 @@
 <!doctype html>
-<!--[if IE 8]>         <html class="ie8"> <![endif]-->
-<!--[if IE 9]>         <html class="ie9"> <![endif]-->
-<!--[if gt IE 9]><!--> <html> <!--<![endif]-->
+<html>
     <head>
         <!-- Meta, title, CSS, favicons, etc. -->
         <meta charset="utf-8">
@@ -19,10 +17,16 @@
         <link rel="stylesheet" href="<?php echo base_url();?>assets/template2/assets/plugins/jquery-jvectormap/jquery-jvectormap-1.2.2.css"/>
         <link rel="stylesheet" href="<?php echo base_url();?>assets/template2/css/plugins/rickshaw.min.css">
         <link rel="stylesheet" href="<?php echo base_url();?>assets/template2/css/plugins/morris.min.css">
+
         <link rel="stylesheet" href="<?php echo base_url();?>assets/template2/assets/plugins/bootstrap-combobox/css/bootstrap-combobox.css">
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
         <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/pdf.js"></script>
         <script src="<?php echo base_url();?>assets/template2/assets/libs/jquery/jquery.min.js"></script>
+
+        <script src="<?php echo base_url();?>assets/template2/dist/assets/libs/jquery-ui/minified/jquery-ui.min.js"></script>
+
         <!--<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/jquery-1.7.1.min.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/turn.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/tools.js"></script>
@@ -30,6 +34,12 @@
         <script src="<?php echo base_url();?>assets/template2/assets/bs3/js/bootstrap.min.js"></script>
         <script src="<?php echo base_url();?>assets/template2/assets/plugins/jquery-navgoco/jquery.navgoco.js"></script>
         <script src="<?php echo base_url();?>assets/template2/js/main.js"></script>
+
+        <script src="<?php echo base_url();?>assets/template2/dist/assets/plugins/jquery-datatables/js/jquery.dataTables.js"></script>
+        <script src="<?php echo base_url();?>assets/template2/dist/assets/plugins/jquery-datatables/js/dataTables.tableTools.js"></script>
+        <script src="<?php echo base_url();?>assets/template2/dist/assets/plugins/jquery-datatables/js/dataTables.bootstrap.js"></script>
+
+        <script src="<?php echo base_url();?>assets/template2/assets/plugins/bootstrap-combobox/js/bootstrap-combobox.js"></script>
 
         <style type="text/css">
         .iframeku{

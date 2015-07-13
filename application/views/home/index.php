@@ -1,42 +1,15 @@
-<?php
-// echo $no." <- post<br>";
-// echo $nama." <- post";
-?>
-
 <div id="carga">
+    <div style="float: right">
+        <button type="button" class="btn" onclick="previous()">Prev</button>
+        <button type="button" class="btn" onclick="next()">Next</button>
+    </div>
     <embed src="<?php echo base_url();?>assets/img/5.gif" class="centrar" />
 </div>
 <div id="imagen-oculta2" />
-<!-- 
-    <header id="botoner">
-        <nav id="botoner-2">
-            <menu>
-                <button>
-                    <img src="<?php echo base_url();?>assets/img/fi.gif" width="35" height="35" alt="" onclick="previous();">
-                </button>
-            </menu>
-            <menu>
-                <button>
-                    <img src="<?php echo base_url();?>assets/img/fd.gif" width="35" height="35" alt="" onclick="next();">
-                </button>
-            </menu>
-            <menu>
-                <button>
-                    <img src="<?php echo base_url();?>assets/img/lupa01.jpg" width="35" height="35" alt="" onclick="if(window.parent.document.body.style.zoom!=0) window.parent.document.body.style.zoom*=1.2; else window.parent.document.body.style.zoom=1.2;">
-                </button>
-            </menu>
-            <menu>
-                <button>
-                    <img src="<?php echo base_url();?>assets/img/lupa02.jpg" width="35" height="35" alt="" onclick="if(window.parent.document.body.style.zoom!=0) window.parent.document.body.style.zoom*=0.8; else window.parent.document.body.style.zoom=0.8;">
-                </button>
-            </menu>
-        </nav>
-    </header>
--->
+
     <div class="magazine">
     </div>
-    <button type="button" class="btn" onclick="previous()">Prev</button>
-    <button type="button" class="btn" onclick="next()">Next</button>
+
 </div>
 
 
@@ -50,11 +23,11 @@
     (function(){
         filename = "<?php echo $nama;?>";
 
-        if(filename == ''){ alert('Nama File Tidak Boleh Kosong'); return false;}
+        // if(filename == ''){ alert('Nama File Tidak Boleh Kosong'); return false;}
 
         file = getUrlVars()["file"];
         if (file == null)
-            file = '<?php echo base_url();?>public/FILES/ANUGERAH TEHORU MANISE, PT/SIKPI/TEHORU/2005/'+filename;
+            file = '<?php echo base_url();?>public/FILES/'+filename;
 
         PDFJS.getDocument(file).then(function (doc) {
             pdfDoc = doc;
