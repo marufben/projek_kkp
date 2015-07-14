@@ -12,7 +12,9 @@ class StatusIzin_Model extends MY_Model{
 	{
 		return array(
 					'id' => 'Id Table',
-					'status_ijin'=>'Status Izin',
+					'id_jenis' => 'Id Jenis Izin',
+					'kode_no'=>'Kode',
+					'nama'=>'Nama Status',
 					'keterangan'=>'Keterangan'
 			);
 	}
