@@ -54,7 +54,7 @@ $json_jenis=json_encode($jenis);
                     <label class="control-label col-sm-2">Jenis Ijin</label>
                     <div class="controls col-sm-4">
                         <select class="form-control" name='jenis_ijin' id='jenis_ijin'>
-                            <option selected>Select Jenis</option>
+                            <option value='' selected>Select Jenis</option>
 						  <?php foreach($jenis as $row){ ?>
 							<option value="<?php echo $row->id; ?>"><?php echo $row->kode; ?></option>
 						  <?php } ?>
@@ -64,7 +64,7 @@ $json_jenis=json_encode($jenis);
 					<div class="controls col-sm-3">
 						<div id='statusijin'>
 							<select class="form-control" name='status_ijin' id='status_ijin' required>
-								<option selected>Select Status</option>
+								<option value='' selected>Select Status</option>
 							</select>
 						</div>
 					</div>
@@ -190,12 +190,20 @@ $json_jenis=json_encode($jenis);
 		var valstatus=$('#status_ijin').val();
 		var noijin=$('#no_ijin').val();
 		jenis =JSON.parse(jenis);
-		$.each(jenis,function(key,val){
-			if(valjenis==val.id){
-				var kode_arsip=val.kode+'.'+valstatus+'.'+noijin;
-				$('#kode_arsip').val(kode_arsip);
-			}
-		});
+		if(valjenis!='' && valstatus!='' && noijin !='' ){
+			$.each(jenis,function(key,val){
+				if(valjenis==val.id){
+					var kode_arsip=val.kode+'.'+valstatus+'.'+noijin;
+					$('#kode_arsip').val(kode_arsip);
+				}
+			});
+		}else if(noijin ==''){
+			alert('no ijin masih kosong!!!');
+		}else if(valjenis ==''){
+			alert('jenis ijin masih kosong!!!');
+		}else{
+			alert('status ijin masih kosong!!!');
+		}
 	});
 	$( "#jenis_ijin" ).change(function() {
 		var value = $(this).val();
