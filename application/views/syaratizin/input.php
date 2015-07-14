@@ -6,7 +6,7 @@
 				?>
 	    <div class="panel panel-default">
 	        <div class="panel-heading">
-	            <h4 class="panel-title">Tambah Status Izin</h4>
+	            <h4 class="panel-title">Tambah Persayaratan Izin</h4>
 	            
 	            <div class="panel-options">
 	                <a href="#" data-rel="collapse"><i class="fa fa-fw fa-minus"></i></a>
@@ -56,7 +56,7 @@
 				<div class="form-group">
 					<label for="inputEmail5" class="col-sm-2 control-label">Nama</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" id="nama_syarat" name='nama_syarat' value="<?php echo $model->nama_syarat; ?>" placeholder="nama status">
+						<input type="text" class="form-control" id="nama_syarat" name='nama_syarat' value="<?php echo $model->nama_syarat; ?>" placeholder="nama syarat">
 					</div>
 				</div>
 				<div class="form-group">
