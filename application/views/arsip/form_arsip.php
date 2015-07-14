@@ -56,7 +56,7 @@ $json_jenis=json_encode($jenis);
                         <select class="form-control" name='jenis_ijin' id='jenis_ijin'>
                             <option selected>Select Jenis</option>
 						  <?php foreach($jenis as $row){ ?>
-							<option value="<?php echo $row->id; ?>"><?php echo $row->jenis_ijin; ?></option>
+							<option value="<?php echo $row->id; ?>"><?php echo $row->kode; ?></option>
 						  <?php } ?>
                         </select>
                     </div>
@@ -192,7 +192,7 @@ $json_jenis=json_encode($jenis);
 		jenis =JSON.parse(jenis);
 		$.each(jenis,function(key,val){
 			if(valjenis==val.id){
-				var kode_arsip=val.jenis_ijin+'.'+valstatus+'.'+noijin;
+				var kode_arsip=val.kode+'.'+valstatus+'.'+noijin;
 				$('#kode_arsip').val(kode_arsip);
 			}
 		});
