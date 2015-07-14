@@ -40,7 +40,7 @@
 							foreach ($status as $key => $valu) {
 							$selected = ($valu->id == $model->id_status)?"selected":"";
 							?>
-							<option <?php echo $selected;?> value="<?php echo $valu->id;?>"><?php echo $valu->status_ijin;?></option>
+							<option <?php echo $selected;?> value="<?php echo $valu->id;?>"><?php echo $valu->nama;?></option>
 							<?php
 							}
 							?>
@@ -79,15 +79,24 @@
 </div>
 
 <script type="text/javascript">
-var s,j,ss,jj,url="<?php echo base_url();?>persyaratanizin/cek";
+var s,
+	j,
+	ss,
+	jj,
+	url="<?php echo base_url();?>persyaratanizin/cek",
+	kode="<?php echo $model->kode_syarat;?>",
+	input="<?php echo $model->id_status;?>";
+
 function jenis(obj){
 	s = $('#id_status'),
 	j = $(obj);
-	if(j.val()==0 || s.val()==0){
-		alert('Silahkan Pilih Jenis')
-	}else{
-		cek(s.val(), j.val())
-	}
+	// if(j.val()==0 || s.val()==0){
+	// 	alert('Silahkan Pilih Jenis')
+	// }else{
+	// 	cek(s.val(), j.val())
+	// }
+
+	getStatus(j.val())
 }
 
 function status(obj){
@@ -96,8 +105,28 @@ function status(obj){
 	if(ss.val()==0 || jj.val()==0){
 		alert('Silahkan Pilih Status')
 	}else{
-		cek(ss.val(), jj.val())
+		if(input != ss.val()){
+			cek(ss.val(), jj.val())
+		}else{
+			$('#kode_syarat').val(kode)
+		}
+
+		// console.log(input+' - '+ss.val());
 	}
+}
+
+var getStatus = function(val){
+	$.ajax({
+		url: "<?php echo base_url();?>persyaratanizin/getStatus",
+		type: 'post',
+		data: {
+			id_jenis: val,
+		},
+		success: function(res){
+			// alert(res)
+			$('#id_status').html(res)
+		}
+	})
 }
 
 var cek = function(one, two){
