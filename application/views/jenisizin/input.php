@@ -15,16 +15,16 @@
 	        </div>
 	        <div class="panel-body">
 				<div class="form-group">
-					<label for="inputEmail5" class="col-sm-2 control-label">Jenis Izin</label>
+					<label for="inputEmail5" class="col-sm-2 control-label">Kode</label>
 					<div class="col-sm-4">
 						<input type="hidden" name='id' value="<?php echo $model->id; ?>">
-						<input type="text" class="form-control" id="jenis_ijin" name='jenis_ijin' value="<?php echo $model->jenis_ijin; ?>" placeholder="nama status">
+						<input type="text" class="form-control" id="kode" name='kode' value="<?php echo $model->kode; ?>" placeholder="kode">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="inputEmail5" class="col-sm-2 control-label">Singkatan</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" id="singkatan" name='singkatan' value="<?php echo $model->singkatan; ?>" placeholder="nama status">
+						<input type="text" class="form-control" id="singkatan" name='singkatan' value="<?php echo $model->singkatan; ?>" placeholder="singkatan">
 					</div>
 				</div>
 				<div class="form-group">

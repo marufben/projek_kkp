@@ -50,7 +50,7 @@
 										<?php echo ($no+1); ?>
 									</td>
 									<td>
-										<?php echo strtoupper($value->status_ijin); ?>
+										<?php echo strtoupper($value->nama); ?>
 									</td>
 									<td>
 										<?php echo $value->keterangan; ?>
@@ -60,7 +60,7 @@
 											<i class="icon-edit"></i>
 											Edit
 										</a>
-										<button class="btn btn-danger" onclick="kirimId('<?php echo $value->id;?>','<?php echo $value->status_ijin;?>')" data-target="#hapusModal" data-toggle="modal">
+										<button class="btn btn-danger" onclick="kirimId('<?php echo $value->id;?>','<?php echo $value->nama;?>')" data-target="#hapusModal" data-toggle="modal">
 											<i class="icon-trash"></i>
 											Hapus
 										</button>

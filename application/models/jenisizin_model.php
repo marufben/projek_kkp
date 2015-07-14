@@ -12,7 +12,7 @@ class JenisIzin_Model extends MY_Model{
 	{
 		return array(
 			'id'=>'Id Table',
-			'jenis_ijin'=>'Jenis Izin',
+			'kode'=>'Kode Izin',
 			'singkatan'=>'Singakatan',
 			'keterangan'=>'Keterangan'
 			);

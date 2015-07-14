@@ -56,6 +56,19 @@ class PersyaratanIzin extends MY_Controller{
 		redirect(site_url('persyaratanizin'));
 	}
 
+	public function getStatus()
+	{
+		$jenis = $_POST['id_jenis'];
+		$q = 'select * from status_ijin where id_jenis = '.$jenis;
+		$data = $this->statusizin_model->custom_query($q);
+		$html = '<option value="0">--Pilih--</option>';
+		foreach ($data as $key => $value) {
+			$html .= '<option value="'.$value->id.'">'.$value->nama.'</option>';
+		}
+
+		echo $html;
+	}
+
 	public function cek()
 	{
 		$status = $_POST['id_status'];

@@ -5,6 +5,7 @@ class StatusIzin extends MY_Controller{
 	{
 		parent::__construct();
 		$this->load->model('statusizin_model');
+		$this->load->model('jenisizin_model');
         $this->set_identity('statusizin', 'id', 'statusizin_model', 'Status Izin');
 	}
 
@@ -25,6 +26,7 @@ class StatusIzin extends MY_Controller{
 		}else{
 			$data['title'] = 'Tambah Status Izin';
 			$data['status'] = $this->statusizin_model->get_arraydata_fields();
+			$data['jenis'] = $this->jenisizin_model->getAll();
 			$this->template->load('kkp', 'statusizin/input',$data);
 		}
 	}
@@ -39,6 +41,7 @@ class StatusIzin extends MY_Controller{
 		}else{
 			$data['title'] = 'Ubah Status Izin';
 			$data['status'] = $this->statusizin_model->get_by_pk($id);
+			$data['jenis'] = $this->jenisizin_model->getAll();
 			$this->template->load('kkp', 'statusizin/input',$data);
 		}
 	}
@@ -48,5 +51,19 @@ class StatusIzin extends MY_Controller{
 		$id = $this->uri->segment('3');
 		$this->statusizin_model->delete($id);
 		redirect(site_url('statusizin'));
+	}
+
+	public function cek()
+	{
+		$jenis = $_POST['id_jenis'];
+		$q = 'select * from status_ijin where id_jenis = '.$jenis.' order by id desc';
+		$data = $this->statusizin_model->custom_query($q);
+		if(sizeof($data)>0){
+			$no = (int)$data[0]->kode_no;
+			$no = (strlen($no) <= 1)?'0'.($no+01):($no+01);
+			echo $no;
+		}else{
+			echo "00";
+		}
 	}
 }
