@@ -64,9 +64,15 @@
 </div>
 
 <script type="text/javascript">
+var status = "<?php echo $status->id_jenis;?>",
+	kode = "<?php echo $status->kode_no; ?>";
 $('#id_jenis').on('change', function(){
 	var val = $(this);
-	cek(val.val())
+	if(status != val.val()){
+		cek(val.val())
+	}else{
+		$('#kode_no').val(kode)
+	}
 })
 
 var cek = function(val){
