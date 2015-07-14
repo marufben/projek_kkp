@@ -43,7 +43,7 @@ class Arsip extends CI_Controller{
 		}
 	}
 	public function status_ijin(){
-		$data['status']=$this->arsip_model->get_table_w('status_ijin',array('id'=>$this->uri->segment(3)));
+		$data['status']=$this->arsip_model->get_table_w('status_ijin',array('id_jenis'=>$this->uri->segment(3)));
 		$this->load->view('arsip/status_ijin',$data);
 	}
 	
