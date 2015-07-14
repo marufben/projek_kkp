@@ -9,12 +9,11 @@ class Arsip extends CI_Controller{
 
 	public function index(){
 		$data['perusahaan']=$this->arsip_model->get_table('perusahaan');
+		$data['jenis']=$this->arsip_model->get_table('jenis_ijin');
 		$this->template->load('kkp','arsip/form_arsip',$data);
 	}
 	public function kapal(){
 		$id_perusahaan=$this->arsip_model->get_table_w('perusahaan',array('id'=>$this->uri->segment(3)));
-		// echo count($id_perusahaan);die();
-
 		$data['nama_perusahaan']=count($id_perusahaan)> 0 ?$id_perusahaan[0]->nama:null;
 		$data['kapal']=$this->arsip_model->get_table_w('kapal',array('id_perusahaan'=>$this->uri->segment(3)));
 		$this->load->view('arsip/kapal',$data);
@@ -43,9 +42,10 @@ class Arsip extends CI_Controller{
 			// $this->load->view('upload_success', $data);
 		}
 	}
-	// public function list_arsip(){
-		
-	// }
+	public function status_ijin(){
+		$data['status']=$this->arsip_model->get_table_w('status_ijin',array('id'=>$this->uri->segment(3)));
+		$this->load->view('arsip/status_ijin',$data);
+	}
 	
 
 	
