@@ -1,4 +1,6 @@
-<?php $config = array('class'=>'form-horizontal form-bordered', 'id'=>'formAddmenu', 'enctype'=>'multipart/form-data' ); echo form_open('arsip/insert', $config);?>
+<?php $config = array('class'=>'form-horizontal form-bordered', 'id'=>'formAddmenu', 'enctype'=>'multipart/form-data' ); echo form_open('arsip/insert', $config);
+$json_jenis=json_encode($jenis);
+?>
     <div class="panel panel-primary">
             <div class="panel-heading">
                 <h4 class="panel-title">Form Arsip</h4>
@@ -40,18 +42,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-sm-2">Kode Barcode</label>
-
-                    <div class="controls col-sm-4">
-                        <input class="form-control" name='barcode' type="text" placeholder="Enter kode barcode">
-                        
-                    </div>
-                </div>
-                <div class="form-group">
                     <label class="control-label col-sm-2">No.Ijin</label>
 
                     <div class="controls col-sm-4">
-                        <input class="form-control" name='no_ijin' type="text" placeholder="Enter no ijin">
+                        <input class="form-control" name='no_ijin' id='no_ijin' type="text" placeholder="Enter no ijin">
                         
                     </div>
                 </div>
@@ -59,36 +53,37 @@
                  <div class="form-group">
                     <label class="control-label col-sm-2">Jenis Ijin</label>
                     <div class="controls col-sm-4">
-                        <select class="form-control" name='jenis_ijin'>
-                            <option value='SU'>SIUP</option>
-                            <option value='SP'>SIPI</option>
-                            <option value='SK'>SIKPI</option>
-                            <option value='RU'>RUMPON</option>
+                        <select class="form-control" name='jenis_ijin' id='jenis_ijin'>
+                            <option selected>Select Jenis</option>
+						  <?php foreach($jenis as $row){ ?>
+							<option value="<?php echo $row->id; ?>"><?php echo $row->jenis_ijin; ?></option>
+						  <?php } ?>
                         </select>
                     </div>
-                </div>
-
-                 <div class="form-group">
                     <label class="control-label col-sm-2">Status Ijin</label>
-
+					<div class="controls col-sm-3">
+						<div id='statusijin'>
+							<select class="form-control" name='status_ijin' id='status_ijin' required>
+								<option selected>Select Status</option>
+							</select>
+						</div>
+					</div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Kode Barcode</label>
                     <div class="controls col-sm-4">
-                        <label class="checkbox-inline">
-                            <input type="radio" name='status_ijin' value="1">
-                            Baru
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="radio" name='status_ijin' value="2" >
-                            Perubahan
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="radio" name='status_ijin' value="3">
-                            Perpanjangan
-                        </label>
+                        <input class="form-control" name='barcode' type="text" placeholder="Enter kode barcode">
+                    </div>
+					<label class="control-label col-sm-2">Kode Arsip</label>
+                    <div class="controls col-sm-3">
+						<div class="input-group">
+							<input readonly class="form-control" name='kode_arsip' id='kode_arsip' type="text" placeholder="Enter kode barcode"><span id='ok' class="input-group-addon"><i class="glyphicon gi-new-window"></i></span>
+						</div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                        <label class="control-label col-sm-2">Tanggal Terbit</label>
+                       <label class="control-label col-sm-2">Tanggal Terbit</label>
 					   <div class="controls col-sm-2">
 						   <div class="input-group date">
 							 <input type="text" name='terbit' id='terbit' class="form-control" data-rel="datepicker"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
@@ -170,7 +165,6 @@
 		$('#expired').datepicker({ format: 'dd-mm-yyyy', });
 		$('#tgl_pembukuan').datepicker({ format: 'dd-mm-yyyy', });
 		$('#combobox').combobox();
-		// $('#kapal_combobox').combobox();
 	});
 	$(document).on('change', '.btn-file :file', function() {
 		  var input = $(this),
@@ -179,7 +173,7 @@
 		  // console.log();
 	  input.trigger('fileselect', [numFiles, label]);
 	});
-	$( "#combobox" ).change(function() {
+	$("#combobox").change(function() {
 		var value = $(this).val();
 		  $.ajax({
 			url: '<?php echo base_url(); ?>arsip/kapal/'+value,
@@ -189,12 +183,35 @@
 				 }
 		});
 	});
+	
+	$("#ok").click(function() {
+		var jenis='<?php echo $json_jenis; ?>';
+		var valjenis=$('#jenis_ijin').val();
+		var valstatus=$('#status_ijin').val();
+		var noijin=$('#no_ijin').val();
+		jenis =JSON.parse(jenis);
+		$.each(jenis,function(key,val){
+			if(valjenis==val.id){
+				var kode_arsip=val.jenis_ijin+'.'+valstatus+'.'+noijin;
+				$('#kode_arsip').val(kode_arsip);
+			}
+		});
+	});
+	$( "#jenis_ijin" ).change(function() {
+		var value = $(this).val();
+		  $.ajax({
+			url: '<?php echo base_url(); ?>arsip/status_ijin/'+value,
+			async:true,
+			success: function(data) {
+				$('#statusijin').html(data);				
+				 }
+		});
+	});
 	$(document).ready(function() {
 		$('.btn-file :file').on('fileselect', function(event, numFiles, label) {
 			// alert('ok');
 			var input = $(this).parents('.input-group').find(':text'),
 				log = numFiles > 1 ? numFiles + ' files selected' : label;
-			// console.log(log);
 			if( input.length ) {
 				input.val(log);
 			} else {
