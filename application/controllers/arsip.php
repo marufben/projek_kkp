@@ -9,7 +9,7 @@ class Arsip extends CI_Controller{
 	}
 
 	public function index(){
-		$data['title'] = 'Arsip';
+		$data['title'] = 'Tambah Arsip';
 		$data['perusahaan']=$this->arsip_model->get_table('perusahaan');
 		$data['jenis']=$this->arsip_model->get_table('jenis_ijin');
 		$this->template->load('kkp','arsip/form_arsip',$data);
@@ -23,7 +23,6 @@ class Arsip extends CI_Controller{
 	}
 
 	public function insert(){
-		$data['title'] = 'Tambah Arsip';
 
 		// directory name
 		$rootdir = './public/FILES';
