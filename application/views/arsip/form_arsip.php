@@ -207,16 +207,14 @@ $json_jenis=json_encode($jenis);
 		}
 	});
 	$( "#jenis_ijin" ).change(function() {
-		var value = $(this).val();
-		var val = value.split('|');
-		console.log(val[0])
-		//   $.ajax({
-		// 	url: '<?php echo base_url(); ?>arsip/status_ijin/'+value,
-		// 	async:true,
-		// 	success: function(data) {
-		// 		$('#statusijin').html(data);				
-		// 		 }
-		// });
+		var value = $(this).val().split('|');
+		  $.ajax({
+			url: '<?php echo base_url(); ?>arsip/status_ijin/'+value[0],
+			async:true,
+			success: function(data) {
+				$('#statusijin').html(data);				
+				 }
+		});
 	});
 	$(document).ready(function() {
 		$('.btn-file :file').on('fileselect', function(event, numFiles, label) {
