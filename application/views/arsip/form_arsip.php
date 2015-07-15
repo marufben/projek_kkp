@@ -232,7 +232,7 @@ $json_jenis=json_encode($jenis);
 	function addVariables(){
 		var varGroups = document.getElementById("variablegroups");
 		var rnumber=Math.random();
-		 var htmls = '<div class="form-group"><label class="control-label col-sm-1">Judul</label><div class="controls col-sm-4"><input name="judul_files" class="form-control" type="text" placeholder="Enter no Judul"></div><label class="control-label col-sm-1">Files</label><div class="controls col-sm-4"> <input name="file_lampiran" type="file" ></div><div class="controls col-sm-1"><a class="btn btn-danger" onClick=\"deleteThisVar(this);\"><i class="fa fa-times"></i></a></div></div>';
+		 var htmls = '<div class="form-group"><label class="control-label col-sm-1">Judul</label><div class="controls col-sm-4"><input name="judul_files[]" class="form-control" type="text" placeholder="Enter no Judul"></div><label class="control-label col-sm-1">Files</label><div class="controls col-sm-4"> <input name="file_lampiran[]" type="file" ></div><div class="controls col-sm-1"><a class="btn btn-danger" onClick=\"deleteThisVar(this);\"><i class="fa fa-times"></i></a></div></div>';
 		$("#variablegroups").append($("<div class='input-group' id=\'"+ rnumber +"\'>"+ htmls +"</div>"));	
 	}
 	function deleteThisVar(obj){

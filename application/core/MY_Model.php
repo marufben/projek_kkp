@@ -10,6 +10,11 @@ class MY_Model extends CI_Model
 
 
 	}
+
+	function insertbatchData($data)
+	{
+		$this->db->insert_batch($this->table_name, $data);
+	}
 	
 	public function last_id()
 	{
