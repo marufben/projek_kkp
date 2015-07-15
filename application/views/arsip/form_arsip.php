@@ -23,7 +23,7 @@ $json_jenis=json_encode($jenis);
                     <label class="control-label col-sm-2">Perusahaan</label>
                     <div class="controls col-sm-4">
                         <select class="form-control" name='perusahaan' id='combobox'>
-						  <option selected>Select Perusahaan</option>
+						  <option value='' selected>Select Perusahaan</option>
 						  <?php foreach($perusahaan as $row){ ?>
 							<option value="<?php echo $row->id; ?>"><?php echo $row->nama; ?></option>
 						  <?php } ?>
@@ -34,29 +34,19 @@ $json_jenis=json_encode($jenis);
                     <label class="control-label col-sm-2">Kapal</label>
                     <div class="controls col-sm-4">
 						<div id='kapal'>
-							<select class="form-control" name='kapal' id='kapal_combobox'>
-								  <option selected>Select Kapal</option>
+							<select class="form-control" name='kapal' id='kapal_combobox1'>
+								  <option value='' selected>Select Kapal</option>
 							</select>
 						</div>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2">No.Ijin</label>
-
-                    <div class="controls col-sm-4">
-                        <input class="form-control" name='no_ijin' id='no_ijin' type="text" placeholder="Enter no ijin">
-                        
-                    </div>
-                </div>
-
                  <div class="form-group">
                     <label class="control-label col-sm-2">Jenis Ijin</label>
                     <div class="controls col-sm-4">
                         <select class="form-control" name='jenis_ijin' id='jenis_ijin'>
                             <option value='' selected>Select Jenis</option>
 						  <?php foreach($jenis as $row){ ?>
-							<option value="<?php echo $row->id; ?>"><?php echo $row->kode; ?></option>
+							<option value="<?php echo $row->id."|".$row->singkatan; ?>"><?php echo $row->kode; ?></option>
 						  <?php } ?>
                         </select>
                     </div>
@@ -68,6 +58,14 @@ $json_jenis=json_encode($jenis);
 							</select>
 						</div>
 					</div>
+                </div>
+				 <div class="form-group">
+                    <label class="control-label col-sm-2">No.Ijin</label>
+
+                    <div class="controls col-sm-4">
+                        <input class="form-control" name='no_ijin' id='no_ijin' type="text" placeholder="Enter no ijin">
+                        
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2">Kode Barcode</label>
@@ -165,6 +163,8 @@ $json_jenis=json_encode($jenis);
 		$('#expired').datepicker({ format: 'dd-mm-yyyy', });
 		$('#tgl_pembukuan').datepicker({ format: 'dd-mm-yyyy', });
 		$('#combobox').combobox();
+		$('#kapal_combobox1').combobox();
+		$('#jenis_ijin').combobox();
 	});
 	$(document).on('change', '.btn-file :file', function() {
 		  var input = $(this),
@@ -187,12 +187,13 @@ $json_jenis=json_encode($jenis);
 	$("#ok").click(function() {
 		var jenis='<?php echo $json_jenis; ?>';
 		var valjenis=$('#jenis_ijin').val();
+		var var_jenis=valjenis.split('|');
 		var valstatus=$('#status_ijin').val();
 		var noijin=$('#no_ijin').val();
 		jenis =JSON.parse(jenis);
 		if(valjenis!='' && valstatus!='' && noijin !='' ){
 			$.each(jenis,function(key,val){
-				if(valjenis==val.id){
+				if(var_jenis[0]==val.id){
 					var kode_arsip=val.kode+'.'+valstatus+'.'+noijin;
 					$('#kode_arsip').val(kode_arsip);
 				}
