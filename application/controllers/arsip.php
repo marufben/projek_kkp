@@ -75,10 +75,12 @@ class Arsip extends CI_Controller{
 		  		$upload_data[$i] = $this->upload->data();
 				$filename = $upload_data[$i]['file_name'];
 		  		
+		  		// insert table lmapiran_arsip
 				$tbl_lampiran['no_ijin'] = $_POST['no_ijin'];
 				$tbl_lampiran['nama_files'] = $filename;
 				$tbl_lampiran['judul'] = $_POST['judul_files'];
 				$data_lampiran[] = $tbl_lampiran;
+		  		// insert table lmapiran_arsip
 
 		    }
 
