@@ -207,9 +207,9 @@ $json_jenis=json_encode($jenis);
 		}
 	});
 	$( "#jenis_ijin" ).change(function() {
-		var value = $(this).val();
+		var value = $(this).val().split('|');
 		  $.ajax({
-			url: '<?php echo base_url(); ?>arsip/status_ijin/'+value,
+			url: '<?php echo base_url(); ?>arsip/status_ijin/'+value[0],
 			async:true,
 			success: function(data) {
 				$('#statusijin').html(data);				
