@@ -9,11 +9,13 @@ class Arsip extends CI_Controller{
 	}
 
 	public function index(){
+		$data['title'] = 'Arsip';
 		$data['perusahaan']=$this->arsip_model->get_table('perusahaan');
 		$data['jenis']=$this->arsip_model->get_table('jenis_ijin');
 		$this->template->load('kkp','arsip/form_arsip',$data);
 	}
 	public function kapal(){
+		$data['title'] = 'Arsip';
 		$id_perusahaan=$this->arsip_model->get_table_w('perusahaan',array('id'=>$this->uri->segment(3)));
 		$data['nama_perusahaan']=count($id_perusahaan)> 0 ?$id_perusahaan[0]->nama:null;
 		$data['kapal']=$this->arsip_model->get_table_w('kapal',array('id_perusahaan'=>$this->uri->segment(3)));
@@ -21,6 +23,7 @@ class Arsip extends CI_Controller{
 	}
 
 	public function insert(){
+		$data['title'] = 'Tambah Arsip';
 
 		// directory name
 		$rootdir = './public/FILES';
