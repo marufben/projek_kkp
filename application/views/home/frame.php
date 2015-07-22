@@ -84,7 +84,10 @@
                 </div>
             </div>
             <div class="panel-body">
-            	<iframe src="<?php echo base_url();?>home/frame" style="display: none" name="iframeku" id="frame" class="iframeku" frameborder="0"></iframe>
+            	<div class="form-group text-right">
+				    <button type="button" id="comp" class="btn btn-warning">Bandingkan</button>
+				</div>
+	            <iframe src="<?php echo base_url();?>home/frame" style="display: none" name="iframeku" id="frame" class="iframeku col-sm-6" frameborder="0"></iframe>
             </div>
         </div>
     </div>

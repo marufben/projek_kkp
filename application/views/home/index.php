@@ -1,8 +1,8 @@
+<div class="form-group text-right">
+    <button type="button" class="btn btn-warning" onclick="previous()">Prev</button>
+    <button type="button" class="btn btn-warning" onclick="next()">Next</button>
+</div>
 <div id="carga">
-    <div style="float: right">
-        <button type="button" class="btn" onclick="previous()">Prev</button>
-        <button type="button" class="btn" onclick="next()">Next</button>
-    </div>
     <embed src="<?php echo base_url();?>assets/img/5.gif" class="centrar" />
 </div>
 <div id="imagen-oculta2" />

@@ -7,7 +7,7 @@ class StatusIzin_Model extends MY_Model{
 		$this->table_name = 'status_ijin';
 		$this->primary_key = 'id';
 	}
-
+    
 	public function attribute_labels()
 	{
 		return array(
