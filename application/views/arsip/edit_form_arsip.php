@@ -1,5 +1,6 @@
 <?php $config = array('class'=>'form-horizontal form-bordered', 'id'=>'formAddmenu', 'enctype'=>'multipart/form-data' ); echo form_open('arsip/insert', $config);
 $json_jenis=json_encode($jenis);
+	foreach($arsip as $val){
 ?>
     <div class="panel panel-primary">
             <div class="panel-heading">
@@ -16,7 +17,7 @@ $json_jenis=json_encode($jenis);
                     <label class="control-label col-sm-2">Judul</label>
 
                     <div class="controls col-sm-6">
-                        <input type="text" class="form-control" name='judul' placeholder="Enter Judul">
+                        <input type="text" value='<?php echo $val->judul;?>' class="form-control" name='judul' placeholder="Enter Judul">
                     </div>
                 </div>
                 <div class="form-group">
@@ -44,9 +45,9 @@ $json_jenis=json_encode($jenis);
                     <label class="control-label col-sm-2">Jenis Ijin</label>
                     <div class="controls col-sm-4">
                         <select class="form-control" name='jenis_ijin' id='jenis_ijin'>
-                            <option value='' selected>Select Jenis</option>
+                            <option value=''>Select Jenis</option>
 						  <?php foreach($jenis as $row){ ?>
-							<option value="<?php echo $row->id."|".$row->singkatan; ?>"><?php echo $row->kode; ?></option>
+							<option <?php echo $val->jenis_ijin==$row->kode?"selected":''; ?> value="<?php echo $row->id."|".$row->singkatan; ?>"><?php echo $row->kode; ?></option>
 						  <?php } ?>
                         </select>
                     </div>
@@ -63,19 +64,19 @@ $json_jenis=json_encode($jenis);
                     <label class="control-label col-sm-2">No.Ijin</label>
 
                     <div class="controls col-sm-4">
-                        <input class="form-control" name='no_ijin' id='no_ijin' type="text" placeholder="Enter no ijin">
+                        <input class="form-control" value='<?php echo $val->no_ijin;?>' name='no_ijin' id='no_ijin' type="text" placeholder="Enter no ijin">
                         
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2">Kode Barcode</label>
                     <div class="controls col-sm-4">
-                        <input class="form-control" name='barcode' type="text" placeholder="Enter kode barcode">
+                        <input class="form-control" value='<?php echo $val->kode_barcode;?>' name='barcode' type="text" placeholder="Enter kode barcode">
                     </div>
 					<label class="control-label col-sm-2">Kode Arsip</label>
                     <div class="controls col-sm-3">
 						<div class="input-group">
-							<input readonly class="form-control" name='kode_arsip' id='kode_arsip' type="text" placeholder="Enter kode barcode"><span id='ok' class="input-group-addon"><i class="glyphicon gi-new-window"></i></span>
+							<input readonly value='<?php echo $val->kode_arsip;?>' class="form-control" name='kode_arsip' id='kode_arsip' type="text" placeholder="Enter kode barcode"><span id='ok' class="input-group-addon"><i class="glyphicon gi-new-window"></i></span>
 						</div>
                     </div>
                 </div>
@@ -83,13 +84,13 @@ $json_jenis=json_encode($jenis);
                        <label class="control-label col-sm-2">Tanggal Terbit</label>
 					   <div class="controls col-sm-2">
 						   <div class="input-group date">
-							 <input type="text" name='terbit' id='terbit' class="form-control" data-rel="datepicker"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+							 <input value='<?php echo $val->tgl_terbit;?>' type="text" name='terbit' id='terbit' class="form-control" data-rel="datepicker"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
 						   </div>
                        </div>
 					   <label class="control-label col-sm-2">Tanggal Expired</label>
 					   <div class="controls col-sm-2">
 						   <div class="input-group date">
-							 <input type="text"  name='expired' id='expired' class="form-control" data-rel="datepicker"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+							 <input value='<?php echo $val->tgl_expired;?>' type="text"  name='expired' id='expired' class="form-control" data-rel="datepicker"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
 						   </div>
                        </div>
                 </div>
@@ -97,19 +98,19 @@ $json_jenis=json_encode($jenis);
                     <label class="control-label col-sm-2">No.Pembukuan</label>
 
                     <div class="controls col-sm-4">
-                        <input name='no_pembukuan' class="form-control" type="text" placeholder="Enter no pembukuan">
+                        <input value='<?php echo $val->no_pembukuan;?>' name='no_pembukuan' class="form-control" type="text" placeholder="Enter no pembukuan">
                         
                     </div>
 					<label class="control-label col-sm-2">Tanggal Pembukuan</label>
 					   <div class="controls col-sm-2">
 						   <div class="input-group date">
-							 <input type="text" id='tgl_pembukuan' class="form-control" data-rel="datepicker"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+							 <input  value='<?php echo $val->tgl_pembukuan;?>' type="text" id='tgl_pembukuan' class="form-control" data-rel="datepicker"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
 						   </div>
                        </div>
                 </div>
 				
             </div>
-           
+	<?php } ?>
 		<style>
 			.btn-file {
 				position: relative;

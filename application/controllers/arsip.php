@@ -99,6 +99,15 @@ class Arsip extends CI_Controller{
 		// die();
 
 	}
+	
+	public function edit_arsip($id){
+		$data['title'] = 'Edit Arsip';
+		$data['arsip']=$this->arsip_model->get_table_w('arsip',array('id'=>$this->uri->segment(3)));
+		$data['perusahaan']=$this->arsip_model->get_table('perusahaan');
+		$data['jenis']=$this->arsip_model->get_table('jenis_ijin');
+		$this->template->load('kkp','arsip/edit_form_arsip',$data);
+	}
+	
 	public function status_ijin(){
 		$data['status']=$this->arsip_model->get_table_w('status_ijin',array('id_jenis'=>$this->uri->segment(3)));
 		$this->load->view('arsip/status_ijin',$data);
