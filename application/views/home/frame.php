@@ -5,12 +5,12 @@
                 Lihat Data
 
                 <div class="panel-options">
-                    <a href="#" data-rel="collapse"><i class="fa fa-fw fa-minus"></i></a>
+                    <!-- <a href="#" data-rel="collapse"><i class="fa fa-fw fa-minus"></i></a> -->
                     <!-- <a href="#" data-rel="reload"><i class="fa fa-fw fa-refresh"></i></a> -->
-                    <a href="#" data-rel="close"><i class="fa fa-fw fa-times"></i></a>
+                    <!-- <a href="#" data-rel="close"><i class="fa fa-fw fa-times"></i></a> -->
                 </div>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" id="panel1">
             	<form id="formAJax" name="form1" action="<?php echo base_url();?>home/frame" method="post" target="iframeku">
 	                <div class="row">
 	                    <div class="col-sm-6">
@@ -78,9 +78,9 @@
                 Hasil Pencarian
 
                 <div class="panel-options">
-                    <a href="#" data-rel="collapse"><i class="fa fa-fw fa-minus"></i></a>
+                    <!-- <a href="#" data-rel="collapse"><i class="fa fa-fw fa-minus"></i></a> -->
                     <!-- <a href="#" data-rel="reload"><i class="fa fa-fw fa-refresh"></i></a> -->
-                    <a href="#" data-rel="close"><i class="fa fa-fw fa-times"></i></a>
+                    <!-- <a href="#" data-rel="close"><i class="fa fa-fw fa-times"></i></a> -->
                 </div>
             </div>
             <div class="panel-body">
@@ -103,6 +103,11 @@ $(function(){
 		$('#res-frame').css('display', 'block');
 		$('#frame').css('display', 'block');
 		e.preventDefault();
+	})
+
+	// Bandingkan File
+	$('#comp').on('click', function(){
+		$('#panel1').slideToggle();
 	})
 
 	// Ubah Nama Perusahaan
