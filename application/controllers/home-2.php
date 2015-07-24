@@ -4,9 +4,7 @@ class Home extends CI_Controller{
 	public function __construct()
 	{
 		parent::__construct();
-		if ($this->session->userdata('login') == NULL) {
-			redirect(site_url('login'));
-		}
+
 	}
 
 	public function index()
@@ -32,21 +30,10 @@ class Home extends CI_Controller{
 
 	public function dirFiles()
 	{
+		$temp_dir = "public/FILES/";
+		$dir = array_diff(scandir($temp_dir), array('..', '.'));
 
-		if(!isset($_POST['par'])){
-			$temp_dir = "public/FILES/";
-			$dir = array_diff(scandir($temp_dir), array('..', '.'));
-			return $dir;
-		}else{
-			$temp_dir = "public/FILES/".$_POST['par'];
-			$dir = array_diff(scandir($temp_dir), array('..', '.'));
-			echo json_encode($dir);
-		}
-	}
-
-	public function logout()
-	{
-		
+		return $dir;
 	}
 
 }

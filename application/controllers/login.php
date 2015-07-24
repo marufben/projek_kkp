@@ -5,6 +5,8 @@ class Login extends MY_Controller{
 	{
 		parent::__construct();
 
+		$this->load->model('login_model');
+		$this->set_identity('unit_kerja', 'id', 'login_model', 'Users');
 	}
 
 	public function index()
@@ -20,6 +22,11 @@ class Login extends MY_Controller{
 		
 		$query = $this->login_model->cek_login($user, $pass);
 		
+		echo "<pre>";
+		var_dump($query);
+		echo "</pre>";
+		die();
+
 		if($query)
 		{
 			

@@ -5,7 +5,8 @@ class Login_model extends MY_Model
 	function __construct()
 	{
 		parent::__construct();
-		
+		$this->table_name = 'unit_kerja';
+		$this->primary_key = 'id';
 	}
 
 	function cek_login($username, $password)
@@ -13,10 +14,9 @@ class Login_model extends MY_Model
 		
 		
 		$this->db->select("*");
-		$this->db->from("users");
+		$this->db->from($this->table_name);
 		$this->db->where("username", $username);
-		// $this->db->where("password", md5(strrev($password)));
-		$this->db->where("password", $password);
+		$this->db->where("password", md5($password));
 		$this->db->limit(1);
 
 		$query = $this->db->get();
@@ -38,9 +38,10 @@ class Login_model extends MY_Model
 	function attribute_labels()
 	{
 		return array(
-			'id' => 'id',
-			'username' => 'user',
-			'password' => 'pass'
+			'id' => 'Id',
+			'username' => 'Username',
+			'password' => 'Password',
+			'status' => 'Status'
 		);
 	}
 
