@@ -26,7 +26,7 @@ $json_jenis=json_encode($jenis);
                         <select class="form-control" name='perusahaan' id='combobox'>
 						  <option value='' selected>Select Perusahaan</option>
 						  <?php foreach($perusahaan as $row){ ?>
-							<option value="<?php echo $row->id; ?>"><?php echo $row->nama; ?></option>
+							<option <?php echo $val->id_perusahaan==$row->id?"selected":''; ?> value="<?php echo $row->id; ?>"><?php echo $row->nama; ?></option>
 						  <?php } ?>
 						</select>
                     </div>
@@ -35,8 +35,19 @@ $json_jenis=json_encode($jenis);
                     <label class="control-label col-sm-2">Kapal</label>
                     <div class="controls col-sm-4">
 						<div id='kapal'>
+							<?php foreach($perusahaan as $row){ 
+						    if($val->id_perusahaan==$row->id){
+								//$selected="selected";
+								echo "<input type='hidden' id='nama_perusahaan' name='nama_perusahaan' value='".$row->nama."'>";
+							}
+							}		
+							
+						  ?>
 							<select class="form-control" name='kapal' id='kapal_combobox1'>
-								  <option value='' selected>Select Kapal</option>
+								<option  value='' selected>Select Kapal</option>
+								<?php foreach($kapal as $row){ ?>
+									<option <?php echo $val->id_kapal==$row->id?"selected":''; ?> value="<?php echo $row->id."|".$row->nama; ?>"><?php echo $row->nama; ?></option>
+								<?php } ?>
 							</select>
 						</div>
                     </div>
@@ -54,9 +65,9 @@ $json_jenis=json_encode($jenis);
                     <label class="control-label col-sm-2">Status Ijin</label>
 					<div class="controls col-sm-3">
 						<div id='statusijin'>
-							<select class="form-control" name='status_ijin' id='status_ijin' required>
-								<option value='' selected>Select Status</option>
-							</select>
+							<?php foreach($status as $row){ ?>
+								<option value="<?php echo $row->kode_no; ?>"><?php echo $row->nama; ?></option>
+							<?php } ?>
 						</div>
 					</div>
                 </div>
