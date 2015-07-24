@@ -4,9 +4,9 @@ class Home extends CI_Controller{
 	public function __construct()
 	{
 		parent::__construct();
-		// if ($this->session->userdata('login') == NULL) {
-		// 	redirect(site_url('login'));
-		// }
+		if ($this->session->userdata('login') == NULL) {
+			redirect(site_url('login'));
+		}
 	}
 
 	public function index()
