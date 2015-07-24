@@ -94,14 +94,15 @@
 
             <div class="page-content">
                 <div class="page-subheading page-subheading-md">
-    <ol class="breadcrumb">
+    <!-- <ol class="breadcrumb">
         <li class="active"><a href="javascript:;">Dashboard</a></li>
-    </ol>
+    </ol> -->
+    <?php echo set_breadcrumb();?>
 </div>
 
-<div class="page-heading page-heading-md">
+<!-- <div class="page-heading page-heading-md">
     <h2>Sirkulasi</h2>
-</div>
+</div> -->
 
 <div class="container-fluid-md">
     <?php echo $body;?>
