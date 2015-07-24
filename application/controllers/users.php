@@ -7,9 +7,6 @@ class Users extends MY_Controller{
 		$this->load->helper('my_helper');
 		no_cache();
 
-		if ($this->session->userdata('login') != NULL) {
-			redirect(site_url());
-		}
 
 		$this->load->model('users_model');
 		$this->set_identity('unit_kerja', 'id', 'users_model', 'Users');
@@ -17,6 +14,9 @@ class Users extends MY_Controller{
 
 	public function index()
 	{
+		if ($this->session->userdata('login') != NULL) {
+			redirect(site_url());
+		}
 		$data['title'] = 'Halaman Login';
 		$this->template->load('login', 'login/index', $data);
 	}
@@ -27,11 +27,6 @@ class Users extends MY_Controller{
 		$pass = $this->input->post("pass");
 		
 		$query = $this->users_model->cek_login($user, $pass);
-		
-		// echo "<pre>";
-		// var_dump($query);
-		// echo "</pre>";
-		// die();
 
 		if($query)
 		{
@@ -49,5 +44,14 @@ class Users extends MY_Controller{
 			redirect("login");
 		}
 		
+	}
+
+	// daftar pengguna
+	public function lists()
+	{
+		$data['title'] = 'Daftar Pengguna';
+		$data['users'] = $this->users_model->getAll();
+		
+		$this->template->load('kkp', 'login/list', $data);
 	}
 }

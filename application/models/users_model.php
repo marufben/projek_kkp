@@ -21,10 +21,6 @@ class Users_model extends MY_Model
 
 		$query = $this->db->get();
 		
-		// var_dump($query->num_rows());
-		// echo $this->db->last_query();
-		// die();
-		
 		if($query->num_rows() == 1)
 		{
 			return $query->result();
@@ -35,12 +31,15 @@ class Users_model extends MY_Model
 		}
 	}
 
+	
+
 	function attribute_labels()
 	{
 		return array(
 			'id' => 'Id',
 			'username' => 'Username',
 			'password' => 'Password',
+			'poto' => 'Photo',
 			'status' => 'Status'
 		);
 	}
