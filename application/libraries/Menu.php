@@ -14,7 +14,8 @@ class Menu {
 					a.nama, 
 					a.url, 
 					a.icon, 
-					DERIV1.JML
+					DERIV1.JML,
+					(select rules_user.loads from rules_user where rules_user.menu_id=a.id and rules_user.group_id=\''.$id.'\' limit 1) loads
 				FROM 
 					menu a 
 				LEFT OUTER JOIN 
@@ -39,7 +40,7 @@ class Menu {
 
 		foreach ($data->result() as $key => $value) {
 
-		  	if ($value->JML > 0) {
+		  	if ($value->JML > 0 && $value->loads == 1) {
 		  	// if ($value->JML > 0 && $value->loads == '1') {
 
 				      
@@ -54,7 +55,7 @@ class Menu {
 			  	$html .= "</ul>";
 		  		$html .= '</li>';
 			  
-		  	} elseif ($value->JML == "") {
+		  	} elseif ($value->JML == "" && $value->loads == 1) {
 		  	// } elseif ($value->JML == "" && $value->loads == '1') {
 		  		$html .= '
 			                <li class="nav-dropdown">

@@ -4,8 +4,10 @@ class Home extends CI_Controller{
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->helper('my_helper');
+		no_cache();
 		if ($this->session->userdata('login') == NULL) {
-			redirect(site_url('login'));
+			redirect(site_url('users'));
 		}
 	}
 
@@ -46,7 +48,8 @@ class Home extends CI_Controller{
 
 	public function logout()
 	{
-		
+		$this->session->sess_destroy();
+		redirect(site_url("users"));
 	}
 
 }

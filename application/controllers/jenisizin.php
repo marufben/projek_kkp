@@ -4,6 +4,11 @@ class JenisIzin extends MY_Controller{
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->helper('my_helper');
+		no_cache();
+		if ($this->session->userdata('login') == NULL) {
+			redirect(site_url('users'));
+		}
 		$this->load->model('jenisizin_model');
         $this->set_identity('jenisizin', 'id', 'jenisizin_model', 'Status Izin');
 

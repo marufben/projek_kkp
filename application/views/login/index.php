@@ -1,6 +1,6 @@
 <div class="panel panel-default form-container">
     <div class="panel-body">
-        <form role="form" action="<?php echo base_url();?>login/cek" method="post">
+        <form role="form" action="<?php echo base_url();?>users/cek" method="post">
             <h3 class="text-center margin-xl-bottom"><?php echo $title;?></h3>
 
             <div class="form-group text-center">

@@ -30,6 +30,7 @@
         <!--<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/jquery-1.7.1.min.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/turn.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/tools.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/kkp.js"></script>
         
         <script src="<?php echo base_url();?>assets/template2/assets/bs3/js/bootstrap.min.js"></script>
         <script src="<?php echo base_url();?>assets/template2/assets/plugins/jquery-navgoco/jquery.navgoco.js"></script>
@@ -73,7 +74,7 @@
                             <a class="btn btn-link btn-xs" href="pages-profile.html" data-placement="bottom" data-toggle="tooltip" data-original-title="Profile"><i class="fa fa-user"></i></a>
                             <a class="btn btn-link btn-xs" href="javascript:;"       data-placement="bottom" data-toggle="tooltip" data-original-title="Messages"><i class="fa fa-envelope"></i></a>
                             <a class="btn btn-link btn-xs" href="javascript:;"       data-placement="bottom" data-toggle="tooltip" data-original-title="Settings"><i class="fa fa-cog"></i></a>
-                            <a class="btn btn-link btn-xs" href="pages-sign-in.html" data-placement="bottom" data-toggle="tooltip" data-original-title="Logout"><i class="fa fa-sign-out"></i></a>
+                            <a class="btn btn-link btn-xs" href="<?php echo base_url();?>home/logout" data-placement="bottom" data-toggle="tooltip" data-original-title="Logout"><i class="fa fa-sign-out"></i></a>
                         </div>
                     </div>
                 </div>
@@ -83,7 +84,7 @@
                     <ul class="nav nav-pills nav-stacked">
                         
                         <?php 
-                        $id = 2;//get level ID from session
+                        $id = $this->session->userdata('level');//get level ID from session
                         echo $this->menu->display_child(0,$id); 
                         ?>
 

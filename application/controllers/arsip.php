@@ -4,6 +4,13 @@ class Arsip extends CI_Controller{
 	public function __construct()
 	{
 		parent::__construct();
+
+		$this->load->helper('my_helper');
+		no_cache();
+		if ($this->session->userdata('login') == NULL) {
+			redirect(site_url('users'));
+		}
+		
 		$this->load->model('arsip_model');
 		$this->load->model('lampiranarsip_model');
 	}

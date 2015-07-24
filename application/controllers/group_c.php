@@ -4,9 +4,11 @@ class Group_c extends MY_Controller{
 	function __construct()
 	{
 		parent::__construct();
-		// if ($this->session->userdata('login') == NULL) {
-		// 	redirect(site_url('login'));
-		// }
+		$this->load->helper('my_helper');
+		no_cache();
+		if ($this->session->userdata('login') == NULL) {
+			redirect(site_url('users'));
+		}
 
 		$this->load->model('group_c_model');
 		$this->set_identity('group_user', 'id', 'group_c_model', 'Group');

@@ -4,9 +4,11 @@ class Rules_c extends MY_Controller{
 	function __construct()
 	{
 		parent::__construct();
-		// if ($this->session->userdata('login') == NULL) {
-			// redirect(site_url('login'));
-		// }
+		$this->load->helper('my_helper');
+		no_cache();
+		if ($this->session->userdata('login') == NULL) {
+			redirect(site_url('users'));
+		}
 
 		$this->load->model('group_c_model');
 		$this->load->model('menu_c_model');
@@ -72,7 +74,7 @@ class Rules_c extends MY_Controller{
 		$data['group'] = $this->group_c_model->getGroup();
 		$data['group_id'] = $group_id;
 		
-		$this->template->load('admin', 'master_rules/edit', $data);
+		$this->template->load('kkp', 'master_rules/edit', $data);
 	}
 	
 	function update()

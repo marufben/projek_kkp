@@ -1,25 +1,23 @@
-<?php
-// echo "<pre>";
-// var_dump($rules);
-// echo "</pre>";
-?>
+<div class="row">
+	<div class="col-md-12">
+		<?php $config = array('class'=>'form-horizontal', 'id'=>'formUbahRules'); echo form_open('rules_c/update', $config);?>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">Ubah Hak Akses</h4>
 
-<div class="span12">
-	<div class="widget widget-nopad">
-		<div class="widget-header"> <i class="icon-list-alt"></i>
-			<h3> Ubah Data</h3>
-		</div>
-		<div class="widget-content">
-		<div class="widget big-stats-container">
-			<div class="widget-content">
+                <div class="panel-options">
+                    <a href="#" data-rel="collapse"><i class="fa fa-fw fa-minus"></i></a>
+                    <!-- <a href="#" data-rel="reload"><i class="fa fa-fw fa-refresh"></i></a> -->
+                    <a href="#" data-rel="close"><i class="fa fa-fw fa-times"></i></a>
+                </div>
+            </div>
+            <div class="panel-body">
 
-			<?php $config = array('class'=>'form-horizontal', 'id'=>'formUbahRules'); echo form_open('rules_c/update', $config);?>
-			<!-- <div class="modal-body"> -->
-			<fieldset>
-			<div class="span6">
-				<div class="control-group">											
-					<label class="control-label" for="group_id">Group Pengguna</label>
-					<div class="controls">
+
+			
+				<div class="form-group">											
+					<label class="col-sm-2 control-label" for="group_id">Group Pengguna</label>
+					<div class="col-sm-4">
 						<!-- <select class="span6" name="group_id" id="group_id"  onchange="cekValue(this)"> -->
 
 							<?php
@@ -27,7 +25,7 @@
 								$selected = ($group_id == $value->id)?"selected":"";
 								// echo "<option value='".$value->id."' ".$selected.">".$value->nama."</option>";
 								$input = '<input type="hidden" name="group_id" value="'.$value->id.'">';
-								$input .= '<input type="text" class="" readonly value="'.$value->nama.'">';
+								$input .= '<input type="text" class="form-control" readonly value="'.$value->nama.'">';
 								if($group_id == $value->id){
 									echo $input;
 								}
@@ -36,12 +34,11 @@
 						<!-- </select> -->
 					</div>											
 				</div>
-			</div>
-			<div class="span6">
-				<div class="control-group">											
-					<label class="control-label" for="group_id">Menu</label>
-					<div class="controls">
-						<select class="span6" name="menu_id" id="menu_id">
+				
+				<div class="form-group">											
+					<label class="col-sm-2 control-label" for="group_id">Menu</label>
+					<div class="col-sm-4">
+						<select class="form-control" name="menu_id" id="menu_id">
 
 							<?php
 							$dis = array();
@@ -60,18 +57,15 @@
 						<?php //echo"<pre>";var_dump($dis);echo "</pre>";?>
 					</div>											
 				</div>
-			</div>
 
-			<div class="span6">
-				<div class="control-group">											
-					<div class="controls">
+				<div class="form-group">										
+					<div class="col-sm-4">
 						<button class="btn" onclick="addRules()" type="button"><i class="icon-plus-sign"></i>Tambah</button>
 					</div>
 				</div>
-			</div>
-			<div class="span8">
-				<div class="control-group">											
-					<div class="controls">
+
+				<div class="form-group">											
+					<div class="col-sm-8">
 						<table id="rules-table" class="table table-striped table-bordered table-hover table-full-width">
 							<thead>
 								<th>
@@ -153,19 +147,16 @@
 						</table>
 					</div>
 				</div>
+
 			</div>
 
-			</fieldset>
-			</div>
-
-			<div class="span6">
-				<div class="control-group">										
-					<div class="controls">
+				<div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
 						<button class="btn" onclick="goBack()" type="button">Batal</button>
 						<button class="btn btn-primary" type="submit">Simpan</button>
 					</div>
 				</div>
-			</div>
+
 			</form>
 
 			<!-- </div> -->

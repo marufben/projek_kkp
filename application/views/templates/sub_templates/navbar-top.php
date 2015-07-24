@@ -3,7 +3,7 @@
                     <a class="navbar-sidebar-toggle navbar-link" data-sidebar-toggle>
                         <i class="fa fa-lg fa-fw fa-bars"></i>
                     </a>
-                    <a class="navbar-brand hidden-xxs" href="index.html">
+                    <a class="navbar-brand hidden-xxs" href="">
                         <span class="sc-visible">
                             I
                         </span>
@@ -14,7 +14,7 @@
                     </a>
                 </div>
                 <ul class="nav navbar-nav navbar-nav-expanded pull-right margin-md-right">
-                    <li class="hidden-xs">
+                    <!--<li class="hidden-xs">
                         <form class="navbar-form">
                             <div class="navbar-search">
                                 <input type="text" placeholder="Search &hellip;" class="form-control">
@@ -133,7 +133,7 @@
                                 <a href="javascript:;"><i class="fa fa-share"></i> See all notifications</a>
                             </li>
                         </ul>
-                    </li>
+                    </li>-->
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle navbar-user" href="javascript:;">
                             <img class="img-circle" src="<?php echo base_url();?>assets/template2/images/profile.jpg">
@@ -143,13 +143,13 @@
                         <ul class="dropdown-menu pull-right-xs">
                             <li class="arrow"></li>
                             <li><a href="pages-profile.html">Profile</a></li>
-                            <li><a href="javascript:;"><span class="badge badge-danger pull-right">2</span> Inbox</a></li>
-                            <li><a href="javascript:;">Messages</a></li>
-                            <li><a href="javascript:;">Settings</a></li>
+                            <!-- <li><a href="javascript:;"><span class="badge badge-danger pull-right">2</span> Inbox</a></li> -->
+                            <!-- <li><a href="javascript:;">Messages</a></li> -->
+                            <!-- <li><a href="javascript:;">Settings</a></li> -->
                             <li class="divider"></li>
-                            <li><a href="pages-sign-in.html">Log Out</a></li>
+                            <li><a href="<?php echo base_url();?>home/logout">Log Out</a></li>
                         </ul>
                     </li>
                 </ul>
-                <a id="navbar-buy-theme" class="btn btn-warning  btn-sm navbar-btn btn-round pull-right margin-right-md">Upgrade!</a>
+                
             </nav>
