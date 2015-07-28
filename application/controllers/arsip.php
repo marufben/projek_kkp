@@ -111,6 +111,7 @@ class Arsip extends CI_Controller{
 		$data['title'] = 'Edit Arsip';
 		$data['arsip']=$this->arsip_model->get_table_w('arsip',array('id'=>$this->uri->segment(3)));
 		$data['perusahaan']=$this->arsip_model->get_table('perusahaan');
+		$data['kapal']=$this->arsip_model->get_table('kapal');
 		$data['jenis']=$this->arsip_model->get_table('jenis_ijin');
 		$this->template->load('kkp','arsip/edit_form_arsip',$data);
 	}
