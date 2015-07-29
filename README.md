@@ -1,2 +1,1 @@
-# projek_kkp
-test
+php script
