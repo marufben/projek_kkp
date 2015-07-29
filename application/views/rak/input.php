@@ -56,6 +56,7 @@
 <script type="text/javascript">
 var link = '<?php echo base_url();?>rak/cekrak',
 	urut = $('#urutan').val();
+
 $('#id_lemari').on('change', function(){
 	var isi = $(this).val();
 	cekRak(link, isi)
@@ -67,8 +68,7 @@ var cekRak = function(a, v){
 		url: a,
 		type: 'post',
 		data: {
-			id_lemari: v,
-			urutan: urut
+			id_lemari: v
 		},
 		success: function(res){
 			var r = JSON.parse(res),
@@ -81,6 +81,8 @@ var cekRak = function(a, v){
 			for(i;i<lRak;i++){
 				html += '<label for="rak'+i+'" class="col-sm-2 control-label">'+r.av[i].urut+'</label>';
 			}
+				html += '<label for="rak'+i+'" class="col-sm-4 control-label" style="color: red">Max. Rak</label>';
+				html += '<label for="rak'+i+'" class="col-sm-2 control-label">'+r.max+'</label>';
 			html += '</div>';
 
 			if(r.full == 'true'){

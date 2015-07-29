@@ -74,7 +74,6 @@ class Rak extends MY_Controller{
 	public function cekrak()
 	{
 		$id = $_POST['id_lemari'];
-		$urut = ($_POST['urutan'] == '')?0:$_POST['urutan'];
 
 		$lemari = $this->lemari_model->get_by_pk($id);
 		$max = $lemari->jml_rak;
