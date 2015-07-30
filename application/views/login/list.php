@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="panel-body">
-						<a class="btn btn-primary" href="<?php echo base_url();?>users/add">
+						<a class="btn btn-primary" href="<?php echo base_url();?>users/create">
 							<i class="icon-plus-sign"></i>
 							Tambah
 						</a>
