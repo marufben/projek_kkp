@@ -34,6 +34,7 @@ class Users extends MY_Controller{
 			$sess=array();
 			foreach($query as $key => $row){
 				$sess['login'] = $user;
+				$sess['poto'] = $row->poto;
 				$sess['level'] = $row->id_group;
 			}
 
@@ -75,28 +76,25 @@ class Users extends MY_Controller{
 		$config['max_width']  = '1024';
 		$config['max_height']  = '768';
 
-		// $this->load->library('upload');
 		$this->upload->initialize($config);
 
 		if(isset($_POST['id'])){
 
 			if(!$this->upload->do_upload('poto')){
-				$error = array('error' => $this->upload->display_errors());
-				echo '<script>alert("'.$this->upload->display_errors().'");location="'.base_url('users/create').'";</script>';
+				$error = $this->upload->display_errors();
+				echo '<script>alert("'.$error.'");location="'.base_url('users/create').'";</script>';
+				exit;
 			}
 
 			$poto = $this->upload->data();
 			$data = $this->users_model->get_arraydata_fields();
+			$data->password = md5($_POST['password']);
 			$data->poto = $poto['file_name'];
 			$model = get_object_vars($data);
-			// $this->users_model->insert($model);
+			// var_dump($model);
+			$this->users_model->insert($model);
+			redirect(site_url('users/lists'));
 
-			echo "<pre>";
-			var_dump($model);
-			echo "<pre>";
-
-
-			// redirect(site_url('users/list'));
 		}else{
 			$data['title'] = 'Tambah Master Lemari';
 			$data['user'] = $this->users_model->get_arraydata_fields();
@@ -107,11 +105,37 @@ class Users extends MY_Controller{
 
 	public function edit($id='')
 	{
+		$dir = './public/USER';
+		if(is_dir($dir) == FALSE){
+			$old_umask = umask(0);
+			mkdir("$dir", 0777);// Create directory if it does not exist
+			umask($old_umask);
+		}
+
+		$config['upload_path'] = $dir;
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['max_size']	= '100';
+		$config['max_width']  = '1024';
+		$config['max_height']  = '768';
+
+		$this->upload->initialize($config);
+
 		if(isset($_POST['id'])){
+			if(!$this->upload->do_upload('poto')){
+				$error = $this->upload->display_errors();
+				echo '<script>alert("'.$error.'");location="'.base_url('users/create').'";</script>';
+				exit;
+			}
+
+			$poto = $this->upload->data();
 			$data = $this->users_model->get_arraydata_fields();
+			$data->password = md5($_POST['password']);
+			$data->poto = $poto['file_name'];
 			$model = get_object_vars($data);
+			// var_dump($model);
 			$this->users_model->update($model);
-			redirect(site_url('users/list'));
+			redirect(site_url('users/lists'));
+
 		}else{
 			$data['title'] = 'Ubah Master Lemari';
 			$data['user'] = $this->users_model->get_by_pk($id);
@@ -123,7 +147,7 @@ class Users extends MY_Controller{
 	public function delete()
 	{
 		$id = $this->uri->segment('3');
-		$this->rak_model->delete($id);
-		redirect(site_url('users/list'));
+		$this->users_model->delete($id);
+		redirect(site_url('users/lists'));
 	}
 }

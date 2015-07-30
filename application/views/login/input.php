@@ -22,7 +22,7 @@
 							<option value="0">--Pilih--</option>
 							<?php
 								foreach ($group as $key => $value) {
-								$selected = ($value->id == $rak->id_group)?"selected":"";
+								$selected = ($value->id == $user->id_group)?"selected":"";
 							?>
 							<option <?php echo $selected;?> value="<?php echo $value->id;?>"><?php echo $value->nama;?></option>
 							<?php
@@ -47,6 +47,21 @@
 					<label for="inputEmail5" class="col-sm-2 control-label">Photo</label>
 					<div class="col-sm-4">
 						<input type="file" class="form-control" id="poto" name='poto'>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail5" class="col-sm-2 control-label">Status</label>
+					<div class="col-sm-4">
+						<select class="form-control" id="status" name='status'>
+							<option value="0">--Pilih--</option>
+							<?php
+								$aktif = ($user->status == '1')?"selected":"";
+								$tidak = ($user->status == '2')?"selected":"";
+							?>
+							<option <?php echo $aktif;?> value="1">Aktif</option>
+							<option <?php echo $tidak;?> value="2">Tidak Aktif</option>
+							
+						</select>
 					</div>
 				</div>
 	        </div>

@@ -65,10 +65,10 @@
         <div class="page-wrapper">
             <aside class="sidebar sidebar-default">
                 <div class="sidebar-profile">
-                    <img class="img-circle profile-image" src="<?php echo base_url();?>assets/template2/images/profile.jpg">
+                    <img class="img-circle profile-image" src="<?php echo base_url();?>public/USER/<?php echo $this->session->userdata('poto');?>">
 
                     <div class="profile-body">
-                        <h4>Marlon Brice</h4>
+                        <h4><?php echo $this->session->userdata('login');?></h4>
 
                         <div class="sidebar-user-links">
                             <a class="btn btn-link btn-xs" href="pages-profile.html" data-placement="bottom" data-toggle="tooltip" data-original-title="Profile"><i class="fa fa-user"></i></a>

@@ -136,8 +136,8 @@
                     </li>-->
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle navbar-user" href="javascript:;">
-                            <img class="img-circle" src="<?php echo base_url();?>assets/template2/images/profile.jpg">
-                            <span class="hidden-xs">Marlon Brice</span>
+                            <img class="img-circle" src="<?php echo base_url();?>public/USER/<?php echo $this->session->userdata('poto');?>">
+                            <span class="hidden-xs"><?php echo $this->session->userdata('login');?></span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu pull-right-xs">
