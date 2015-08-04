@@ -7,6 +7,14 @@ class SetupRetensi_Model extends MY_Model{
 		$this->primary_key = 'id';
 	}
 
+	public function findActive()
+	{
+		$this->db->select('*');
+		$this->db->where('status', 1);
+		$result = $this->db->get($this->table_name)->row();
+		return $result;
+	}
+
 	public function attribute_labels()
 	{
 		return array(

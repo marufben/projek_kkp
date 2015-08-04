@@ -17,7 +17,7 @@
                 </a>
                 <hr>
 
-                <table id="master-menu" class="table table-striped dataTable">
+                <table id="master-menu" class="table table-bordered">
                     <thead>
                         <tr>
                             <th>

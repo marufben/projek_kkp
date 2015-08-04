@@ -6,6 +6,9 @@ class SetupRetensi extends MY_Controller{
 		$this->load->helper('my_helper');
 		no_cache();
 
+		if ($this->session->userdata('login') == NULL) {
+			redirect(site_url());
+		}
 
 		$this->load->model('setupretensi_model');
 	}
@@ -59,8 +62,22 @@ class SetupRetensi extends MY_Controller{
 
 	public function daftar()
 	{
-		$data['title'] = 'Setup Retensi';
-		$data['list'] = $this->setupretensi_model->getAll();
-		$this->template->load('kkp', 'retensi/index', $data);
+		$data['title'] = 'Filter Daftar Retensi Arsip';
+		$data['list'] = $this->setupretensi_model->findActive();
+		$this->template->load('kkp', 'retensi/daftar', $data);
+	}
+
+	public function cari()
+	{
+		$tahun = $_POST['tahun'];
+		$retensi = $this->setupretensi_model->findActive();
+
+		$data = array();
+		$data['tahun'] = $tahun;
+		$data['batas'] = (int)$retensi->batas;
+		$data['retensi'] = $data['tahun']-$data['batas'];
+		$data['html'] = "<h1>hellooo</h1>";
+
+		echo json_encode($data);
 	}
 }

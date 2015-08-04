@@ -63,6 +63,7 @@
 	                    </div>
 	                </div>
 	                <div class="form-group text-right">
+                        <button type="button" id="unduh1" link="kampret" class="btn btn-warning">Download</button>
                         <button type="button" id="send" class="btn btn-primary">Lihat</button>
                     </div>
             	</form>
@@ -159,6 +160,7 @@
 	                    </div>
 	                </div>
 	                <div class="form-group text-right">
+                        <button type="button" id="unduh2" class="btn btn-warning">Download</button>
                         <button type="button" id="kirim" class="btn btn-primary">Lihat</button>
                     </div>
             	</form>
@@ -205,6 +207,24 @@ $(function(){
 		$('#res-frame2').css('display', 'block');
 		$('#frame2').css('display', 'block');
 		e.preventDefault();
+	})
+
+	// Unduh
+	$('#unduh1').on('click', function(){
+		var file = $('.file option:selected');
+		if(file.val() == '' || file.val() == 0){
+			alert('File belum dipilih')
+		}else{
+			window.location = '<?php echo base_url();?>public/FILES/'+file.val();
+		}
+	})
+	$('#unduh2').on('click', function(){
+		var file = $('.file option:selected');
+		if(file.val() == '' || file.val() == 0){
+			alert('File belum dipilih')
+		}else{
+			window.location = '<?php echo base_url();?>public/FILES/'+file.val();
+		}
 	})
 
 	// Bandingkan File
@@ -279,46 +299,5 @@ $(function(){
 			}
 		})
 	}
-
-	// AutoComplete
-	// var s = "<?php echo base_url();?>home/dirFiles";
-	// $("#pt").autocomplete({
-	// 	source: function(req, res){
-	// 	      $.ajax({
-	// 	        url: s,
-	// 	        dataType: "json",
-	// 	        async: true,
-	// 	        data: {term: req.term},
-	// 	        success: function(data){
-	// 	          if(data){
-	// 	            var found = $.map(data, function(item){
-	// 	                    return {
-	// 	                      label:item.label,
-	// 	                      value: item.value,
-	// 	                      desc: item.desc
-	// 	                    };
-	// 	                  });
-	// 	            res(found);           
-	// 	          }else{
-	// 	            // var d = $("#izinPPKH").val() + " belum terdaftar";
-	// 	            // $('#erPPKH').html(d)
-	// 	          }
-	// 	        },
-	// 	        error: function(){
-	// 	          res([]);
-	// 	        }
-	// 	      });
-	// 	},
-	// 	minLength: 1,
-	// 	focus: function(event, ui){
-	// 		$('#pt').val(ui.item.label);
-	// 		return false;
-	// 	},
-	// 	select: function(event, ui){
-	// 		$('#pt').val(ui.item.value);
-	// 		// $('#alamat').val(ui.item.desc);
-	// 		// return false;
-	// 	}
-	// });
 })
 </script>
