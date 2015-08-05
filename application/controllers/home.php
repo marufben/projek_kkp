@@ -6,6 +6,10 @@ class Home extends CI_Controller{
 		parent::__construct();
 		$this->load->helper('my_helper');
 		no_cache();
+		// echo "<pre>";
+		// var_dump($this->session->userdata('login'));
+		// echo "</pre>";
+		// die();
 		if ($this->session->userdata('login') == NULL) {
 			redirect(site_url('users'));
 		}

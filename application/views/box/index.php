@@ -18,7 +18,7 @@
 						</a>
 						<hr>
 					<!-- </h6> -->
-
+					
 						<table id="master-lemari" class="table table-striped dataTable">
 							<thead>
 								<tr>
@@ -58,11 +58,11 @@
 										<?php echo $value->urutan; ?>
 									</td>
 									<td width="20%">
-										<a class="btn" href="<?php echo base_url()."box/edit/".$value->id;?>">
+										<a class="btn" href="<?php echo base_url()."box/edit/".$value->idbox;?>">
 											<i class="icon-edit"></i>
 											Edit
 										</a>
-										<button class="btn btn-danger" onclick="kirimId('<?php echo $value->id;?>','<?php echo $value->no." Box No : [ ".$value->nobox." ] Di Rak No : [ ".$value->urutan." ]";?>')" data-target="#hapusModal" data-toggle="modal">
+										<button class="btn btn-danger" onclick="kirimId('<?php echo $value->idbox;?>','<?php echo $value->no." Box No : [ ".$value->nobox." ] Di Rak No : [ ".$value->urutan." ]";?>')" data-target="#hapusModal" data-toggle="modal">
 											<i class="icon-trash"></i>
 											Hapus
 										</button>
@@ -109,6 +109,6 @@ function kirimId(id, nama)
 {
 	var pesan = "Anda akan menghapus <strong>"+nama+"</strong> dari Tabel, klik Hapus untuk melanjutkan.";
 	$('#hapusData').html(pesan);
-	$("#hapus").attr("href","<?php echo base_url();?>lemari/delete/"+id);
+	$("#hapus").attr("href","<?php echo base_url();?>box/delete/"+id);
 }
 </script>

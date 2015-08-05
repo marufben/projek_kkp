@@ -83,7 +83,6 @@ var cekRak = function(v){
 		},
 		success: function(res){
 			$('#id_rak').html(res)
-			console.log(res);
 		}
 	})
 }

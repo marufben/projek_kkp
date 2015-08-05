@@ -34,6 +34,7 @@ class Users extends MY_Controller{
 			$sess=array();
 			foreach($query as $key => $row){
 				$sess['login'] = $user;
+				$sess['id'] = $row->id;
 				$sess['poto'] = $row->poto;
 				$sess['level'] = $row->id_group;
 			}
@@ -142,6 +143,14 @@ class Users extends MY_Controller{
 			$data['group'] = $this->group_c_model->getAll();
 			$this->template->load('kkp', 'login/input',$data);
 		}
+	}
+
+	public function detail($id='')
+	{
+		$id = ($id == '')?$this->session->userdata('id'):$id;
+		// echo $id;
+		$data['title'] = 'Detail Pengguna';
+		$this->template->load('kkp', 'login/detail', $data);
 	}
 
 	public function delete()

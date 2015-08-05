@@ -19,7 +19,7 @@ class Box extends MY_Controller{
 		$data['title'] = 'Master Box Arsip';
 		$sql = '
 				select 
-					c.id,
+					c.id as idbox,
 					a.urutan,
 					b.no,
 					c.no as nobox
@@ -31,7 +31,9 @@ class Box extends MY_Controller{
 					a.id_lemari = b.id and
 					a.id = c.id_rak
 				';
+				
 		$data['box'] = $this->box_model->custom_query($sql);
+
 		$this->template->load('kkp', 'box/index', $data);
 	}
 
