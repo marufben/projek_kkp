@@ -27,6 +27,7 @@ class arsip_model extends MY_Model {
 			'no_ijin'=>$this->input->post('no_ijin'),
 			'tgl_terbit'=>$this->input->post('terbit'),
 			'tgl_expired'=>$this->input->post('expired'),
+			'kode_arsip'=>$this->input->post('kode_arsip'),
 			// 'jumlah_halaman'=>$this->input->post(''),
 			'no_pembukuan'=>$this->input->post('no_pembukuan'),
 			'tgl_pembukuan'=>date('Y-m-d'),
