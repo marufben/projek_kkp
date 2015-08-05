@@ -30,7 +30,7 @@
 						<label for="inputEmail5" class="col-sm-2 control-label">Tahun</label>
 						<div class="col-sm-4">
 							<select class="form-control" id="tahun" name='tahun'>
-								<option>--Pilih--</option>
+								<!-- <option>--Pilih--</option> -->
 								<?php
 								$time = strtotime("-50 year", time());
 	  							$date = date("Y", $time);
@@ -48,39 +48,33 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
+<div id="hasil">
 
-        <div class="panel panel-success panel-clean">
-            <div class="panel-heading">
-                <h4 class="panel-title">Hasil</h4>
-            </div>
-            <div class="panel-body">
-            	<div id="hasil">
-				</div>
-            </div>
-        </div>	
-    </div>		
-</div>			
+</div>		
 
 <script type="text/javascript">
-var link  = '<?php echo base_url();?>setupretensi/cari';
+(function(){
+	var link  = '<?php echo base_url();?>setupretensi/cari';
 
-$('#tahun').on('change', function(){
-	cari(link, $(this).val())
-})
-
-var cari = function(a, v){
-	$.ajax({
-		url: a,
-		type: 'post',
-		data: {
-			tahun: v
-		},
-		success: function(res){
-			var val = JSON.parse(res);
-			$('#hasil').html(val.html)
-		}
+	$('#tahun').on('change', function(){
+		cari(link, $(this).val())
 	})
-}
+
+	var cari = function(a, v){
+		$.ajax({
+			url: a,
+			type: 'post',
+			data: {
+				tahun: v
+			},
+			success: function(res){
+				var val = JSON.parse(res);
+				$('#hasil').html(val.html)
+			}
+		})
+	}
+
+	cari(link, $('#tahun').val())
+})();
+
 </script>

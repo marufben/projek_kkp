@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class arsip_model extends CI_Model {
+class arsip_model extends MY_Model {
 	
 	public function __construct(){
 		parent::__construct();
@@ -37,5 +37,26 @@ class arsip_model extends CI_Model {
 	// public function upload_lampiran(){
 		
 	// }
+	public function attribute_labels()
+	{
+		return array(
+				'id' => 'Id Table',
+				'judul' => 'Dasar Hukum',
+				'id_perusahaan' => 'Batas Max Retensi',
+				'id_kapal' => 'Status',
+				'kode_arsip' => 'Status',
+				'kode_barcode' => 'Status',
+				'salinan' => 'Status',
+				'status_ijin' => 'Status',
+				'jenis_file' => 'Status',
+				'jenis_ijin' => 'Status',
+				'no_ijin' => 'Status',
+				'tgl_terbit' => 'Status',
+				'tgl_expired' => 'Status',
+				'jumlah_halaman' => 'Status',
+				'no_pembukuan' => 'Status',
+				'tgl_pembukuan' => 'Status',
+			);
+	}
 }
 ?>

@@ -11,6 +11,7 @@ class SetupRetensi extends MY_Controller{
 		}
 
 		$this->load->model('setupretensi_model');
+		$this->load->model('arsip_model');
 	}
 
 	public function index()
@@ -76,7 +77,24 @@ class SetupRetensi extends MY_Controller{
 		$data['tahun'] = $tahun;
 		$data['batas'] = (int)$retensi->batas;
 		$data['retensi'] = $data['tahun']-$data['batas'];
-		$data['html'] = "<h1>hellooo</h1>";
+
+		$sql = '
+				SELECT 
+					* 
+				FROM 
+					arsip 
+				WHERE 
+					(
+						SELECT
+							EXTRACT(YEAR from tgl_expired) as tahun
+						FROM
+							arsip
+					) = \''.$data['retensi'].'\'
+		';
+		$data['pesan'] = "Menampilkan data dari tahun";
+		$data['result'] = $this->setupretensi_model->custom_query($sql);
+		$data['html'] = $this->load->view('retensi/result', $data, true);
+		// $data['html'] = $this->template->load('kkp', 'retensi/result', $data);
 
 		echo json_encode($data);
 	}
