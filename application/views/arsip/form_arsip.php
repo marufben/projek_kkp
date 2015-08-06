@@ -1,12 +1,12 @@
 <?php $config = array('class'=>'form-horizontal form-bordered', 'id'=>'formAddmenu', 'enctype'=>'multipart/form-data' ); echo form_open('arsip/insert', $config);
 $json_jenis=json_encode($jenis);
 ?>
-    <div class="panel panel-primary">
+    <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">Form Arsip</h4>
                 <div class="panel-options">
-                    <a href="#" data-rel="collapse"><i class="fa fa-fw fa-minus"></i></a>
-                    <a href="#" data-rel="reload"><i class="fa fa-fw fa-refresh"></i></a>
+                    <!-- <a href="#" data-rel="collapse"><i class="fa fa-fw fa-minus"></i></a>
+                    <a href="#" data-rel="reload"><i class="fa fa-fw fa-refresh"></i></a> -->
                     <a href="#" data-rel="close"><i class="fa fa-fw fa-times"></i></a>
                 </div>
             </div>
@@ -83,13 +83,15 @@ $json_jenis=json_encode($jenis);
                        <label class="control-label col-sm-2">Tanggal Terbit</label>
 					   <div class="controls col-sm-2">
 						   <div class="input-group date">
-							 <input type="text" name='terbit' id='terbit' class="form-control" data-rel="datepicker"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+							 <input type="text" id='terbit' class="form-control" data-rel="datepicker"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+							 <input name='terbit' type="hidden" id="terbit_send"> 
 						   </div>
                        </div>
 					   <label class="control-label col-sm-2">Tanggal Expired</label>
 					   <div class="controls col-sm-2">
 						   <div class="input-group date">
-							 <input type="text"  name='expired' id='expired' class="form-control" data-rel="datepicker"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+							 <input type="text" id='expired' class="form-control" data-rel="datepicker"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+							 <input name='expired' type="hidden" id="expired_send"> 
 						   </div>
                        </div>
                 </div>
@@ -104,12 +106,12 @@ $json_jenis=json_encode($jenis);
 					   <div class="controls col-sm-2">
 						   <div class="input-group date">
 							 <input type="text" id='tgl_pembukuan' class="form-control" data-rel="datepicker"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+							 <input name='tgl_pembukuan' type="hidden" id="tgl_pembukuan_send"> 
 						   </div>
                        </div>
                 </div>
-				
             </div>
-           
+
 		<style>
 			.btn-file {
 				position: relative;
@@ -131,7 +133,7 @@ $json_jenis=json_encode($jenis);
 				display: block;
 			}
 		</style>
-			<div class='form-group'>
+			<!-- <div class='form-group'>
 				<div class="col-md-12">
 					<div class="panel panel-danger">
 						<div class="panel-heading">
@@ -147,24 +149,179 @@ $json_jenis=json_encode($jenis);
 						</div>
 					</div>
 				</div>
+			</div> -->
+
+			<div class='form-group'>
+				<table class="table">
+		       		<thead>
+						<tr>
+							<th colspan="3">Upload Lampiran Arsip</th>
+						</tr>
+						<tr>
+							<td>Judul</td>
+							<td>Files</td>
+							<td>&nbsp;</td>
+						</tr>
+		       		</thead>
+		       		<tbody id="variablegroups">
+		       			<tr>
+		       				<td width="40%">
+								<input name="judul_files[]" class="form-control" type="text" placeholder="Enter no Judul">
+		       				</td>
+		       				<td width="40%">
+								<input name="file_lampiran[]" type="file" >
+		       				</td>
+		       				<td width="10%"><button type="button" class='btn btn-success' onClick="addVariables();"><i class="fa fa-fw fa-plus"></i>Tambah</button></td>
+		       			</tr>
+		       		</tbody>
+				</table>
+			</div>
+			<div class="form-group">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Penempatan Arsip</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+							<div class="form-group">
+							<label for="inputEmail5" class="col-sm-2 control-label">No Lemari</label>
+							<div class="col-sm-4">
+									<select class="form-control" id="id_lemari" name='id_lemari'>
+										<option>--Pilih--</option>
+										<?php
+										foreach ($lemari as $key => $value) {
+											 $selected = ($value->id == $box->id_lemari)?"selected":"";
+										?>
+										<option <?php echo $selected;?> value="<?php echo $value->id;?>"><?php echo $value->no;?></option>
+										<?php
+										}
+										?>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputEmail5" class="col-sm-2 control-label">Urutan Rak</label>
+								<div class="col-sm-4">
+									<select class="form-control" id="id_rak" name='id_rak'>
+										<option>--Pilih--</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputEmail5" class="col-sm-2 control-label">No Box</label>
+								<div class="col-sm-4">
+									<select class="form-control" id="id_box" name='id_box'>
+										<option>--Pilih--</option>
+									</select>
+								</div>
+							</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
+
 		<div class="panel-footer">
             <div class="text-right">
-              <button type="submit" class="btn btn-default">Save Arsip</button>
+              <button type="submit" class="btn btn-primary">Save Arsip</button>
            </div>
         </div>
 	</div>
     </form>
 	<script>
 	$(document).ready(function(){
-		$('#terbit').datepicker({  format: 'dd-mm-yyyy', });
-		$('#expired').datepicker({ format: 'dd-mm-yyyy', });
-		$('#tgl_pembukuan').datepicker({ format: 'dd-mm-yyyy', });
+		// $('#terbit').datepicker({  format: 'dd-mm-yyyy', });
+		// $('#expired').datepicker({ format: 'dd-mm-yyyy', });
+		// $('#tgl_pembukuan').datepicker({ format: 'dd-mm-yyyy', });
+
+		// $('#terbit').datepicker({
+		//     format: 'dd-mm-yyyy',
+		//     onSelect: function(value, date) { 
+		// 	      var day = $(this).datepicker('getDate').getDate();  
+		// 	      var month = $(this).datepicker('getDate').getMonth();  
+		// 	      var year = $(this).datepicker('getDate').getFullYear(); 
+		// 	      alert(value)
+		// 	      // $('#terbit_send').val(year+"-"+(month+1)+"-"+day);
+		//     }
+		// });
+		$('#terbit').datepicker({
+			format: 'dd-mm-yyyy',
+		}).on('changeDate', function(){
+
+			var date = $(this).val(),
+		    values = date.split("-"),
+		    day = parseInt(values[0], 10),
+		    month = parseInt(values[1], 10), // Month is zero based, so subtract 1
+		    year = parseInt(values[2], 10);
+
+		    // alert(year+"-"+month+"-"+day)
+			$('#terbit_send').val(year+"-"+month+"-"+day)
+		})
+		
+		$('#expired').datepicker({
+		    format: 'dd-mm-yy'
+		}).on('changeDate', function(){
+
+			var date = $(this).val(),
+		    values = date.split("-"),
+		    day = parseInt(values[0], 10),
+		    month = parseInt(values[1], 10), // Month is zero based, so subtract 1
+		    year = parseInt(values[2], 10);
+			
+		    // alert(year+"-"+month+"-"+day)
+			$('#expired_send').val(year+"-"+month+"-"+day)
+		});
+
+		$('#tgl_pembukuan').datepicker({
+		    format: 'dd-mm-yy'
+		}).on('changeDate', function(){
+
+			var date = $(this).val(),
+		    values = date.split("-"),
+		    day = parseInt(values[0], 10),
+		    month = parseInt(values[1], 10), // Month is zero based, so subtract 1
+		    year = parseInt(values[2], 10);
+			
+		    // alert(year+"-"+month+"-"+day)
+			$('#tgl_pembukuan_send').val(year+"-"+month+"-"+day)
+		});
+
 		$('#combobox').combobox();
 		$('#kapal_combobox1').combobox();
 		$('#jenis_ijin').combobox();
 	});
+
+	var url = "<?php echo base_url();?>arsip/getId";
+
+	$('#id_lemari').on('change', function(){
+		var isi = $(this).val();
+		getId(isi, 'rak', $('#id_rak'))
+	})
+
+	$('#id_rak').on('change', function(){
+		var isi = $(this).val();
+		getId(isi, 'box', $('#id_box'))
+	})
+
+	var getId = function(val, obj, target){
+		$.ajax({
+			url: url,
+			type: 'post',
+			data: {
+				val: val,
+				obj: obj
+			},
+			success: function(res){
+				var r = JSON.parse(res)
+				target.html(r.query)
+			}
+		})
+	}
+
 	$(document).on('change', '.btn-file :file', function() {
 		  var input = $(this),
 		  numFiles = input.get(0).files ? input.get(0).files.length : 1,
@@ -231,10 +388,34 @@ $json_jenis=json_encode($jenis);
 	function addVariables(){
 		var varGroups = document.getElementById("variablegroups");
 		var rnumber=Math.random();
-		 var htmls = '<div class="form-group"><label class="control-label col-sm-1">Judul</label><div class="controls col-sm-4"><input name="judul_files[]" class="form-control" type="text" placeholder="Enter no Judul"></div><label class="control-label col-sm-1">Files</label><div class="controls col-sm-4"> <input name="file_lampiran[]" type="file" ></div><div class="controls col-sm-1"><a class="btn btn-danger" onClick=\"deleteThisVar(this);\"><i class="fa fa-times"></i></a></div></div>';
-		$("#variablegroups").append($("<div class='input-group' id=\'"+ rnumber +"\'>"+ htmls +"</div>"));	
+		 // var htmls = '<div class="form-group"><label class="control-label col-sm-1">Judul</label><div class="controls col-sm-4"><input name="judul_files[]" class="form-control" type="text" placeholder="Enter no Judul"></div><label class="control-label col-sm-1">Files</label><div class="controls col-sm-4"> <input name="file_lampiran[]" type="file" ></div><div class="controls col-sm-1"><a class="btn btn-danger" onClick=\"deleteThisVar(this);\"><i class="fa fa-times"></i></a></div></div>';
+		 var htmls = ''+
+				'<tr>'+
+					'<td>'+
+						'<input name="judul_files[]" class="form-control" type="text" placeholder="Enter no Judul">'+
+					'</div>'+
+					'</td>'+
+					'<td>'+
+					    '<input name="file_lampiran[]" type="file" >'+
+					'</div>'+
+					'</td>'+
+					'<td><a class="btn btn-danger" onClick=\"deleteRules(this);\"><i class="fa fa-times"></i> Hapus</a></td>'+
+				'</tr>';
+
+		$("#variablegroups").append(htmls);	
+		// $("#variablegroups").append($("<div class='input-group' id=\'"+ rnumber +"\'>"+ htmls +"</div>"));	
 	}
 	function deleteThisVar(obj){
 		obj.parentNode.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode.parentNode);
 	}
+
+	function deleteRules(val){
+
+		var par = $(val).closest('tr'); //tr
+		if(confirm('Anda yakin?'))
+		{
+			par.remove();
+		}
+		return false;
+	}; 
 	</script>

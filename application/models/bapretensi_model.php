@@ -1,20 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class LampiranArsip_Model extends MY_Model{
+
+class BapRetensi_Model extends MY_Model{
 	public function __construct()
 	{
 		parent::__construct();
-		$this->table_name = 'lampiran_arsip';
+		$this->table_name = 'bap_retensi';
 		$this->primary_key = 'id';
 	}
 
 	public function attribute_labels()
 	{
 		return array(
-			'id' => 'Id Table',
-			'no_ijin' => 'No Izin',
-			'nama_files' => 'Nama File',
-			'judul' => 'Judul',
-			'keterangan' => 'Keterangan',
+				'id' => 'Id Table',
+				'no_bap' => 'No Bap',
+				'tgl_bap' => 'Tanggal',
+				'pejabat' => 'Pejabat Berwenang',
 			);
 	}
+
 }

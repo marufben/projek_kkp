@@ -3,7 +3,7 @@
 
         <div class="panel panel-success panel-clean">
             <div class="panel-heading">
-                        <h4 class="panel-title">Form Arsip</h4>
+                        <h4 class="panel-title"><?php echo $title;?></h4>
                 <div class="panel-options">
                             <a href="#" data-rel="collapse"><i class="fa fa-fw fa-minus"></i></a>
                             <a href="#" data-rel="reload"><i class="fa fa-fw fa-refresh"></i></a>

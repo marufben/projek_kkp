@@ -13,12 +13,16 @@ class Arsip extends CI_Controller{
 		
 		$this->load->model('arsip_model');
 		$this->load->model('lampiranarsip_model');
+		$this->load->model('lemari_model');
+		$this->load->model('rak_model');
+		$this->load->model('box_model');
 	}
 
 	public function index(){
 		$data['title'] = 'Tambah Arsip';
 		$data['perusahaan']=$this->arsip_model->get_table('perusahaan');
 		$data['jenis']=$this->arsip_model->get_table('jenis_ijin');
+		$data['lemari'] = $this->lemari_model->getAll();
 		$this->template->load('kkp','arsip/form_arsip',$data);
 	}
 	public function kapal(){
@@ -87,23 +91,20 @@ class Arsip extends CI_Controller{
 		  		// insert table lmapiran_arsip
 				$tbl_lampiran['no_ijin'] = $_POST['no_ijin'];
 				$tbl_lampiran['nama_files'] = $filename;
-				$tbl_lampiran['judul'] = $_POST['judul_files'];
+				$tbl_lampiran['judul'] = $_POST['judul_files'][$i];
 				$data_lampiran[] = $tbl_lampiran;
 		  		// insert table lmapiran_arsip
 
 		    }
 
-		    // $this->arsip_model->insert_arsip();
+		    $this->arsip_model->insert_arsip();
 		    $this->lampiranarsip_model->insertbatchData($data_lampiran);
+
+		    redirect(site_url('arsip'));
         }else{
         	echo "string";
         	echo "<script>alert('Belum memilih File');location='".base_url()."arsip';</script>";
         }
-
-		// echo "<pre>";
-		// var_dump($namafile);
-		// echo "</pre>";
-		// die();
 
 	}
 	
@@ -121,7 +122,33 @@ class Arsip extends CI_Controller{
 		$this->load->view('arsip/status_ijin',$data);
 	}
 	
+	public function getId()
+	{
+		$obj = $_POST['obj'];
+		$id = $_POST['val'];
 
+		$html = '<option>--Pilih--</option>';
+
+		if($obj == 'rak'){
+
+			$query = $this->rak_model->getWhere('id_lemari', $id);
+			foreach ($query->result() as $key => $value) {
+				$html .= '<option value="'.$value->id.'">'.$value->urutan.'</option>';
+			}
+
+		}else{
+			
+			$query = $this->box_model->getWhere('id_rak', $id);
+			foreach ($query->result() as $key => $value) {
+				$html .= '<option value="'.$value->id.'">'.$value->no.'</option>';
+			}
+
+		}
+
+		$data['query'] = $html;
+
+		echo json_encode($data);
+	}
 	
 
 }

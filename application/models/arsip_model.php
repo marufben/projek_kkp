@@ -4,6 +4,8 @@ class arsip_model extends MY_Model {
 	
 	public function __construct(){
 		parent::__construct();
+		$this->table_name = 'arsip';
+		$this->primary_key = 'id';
 	}
 	public function get_table($table){
 		$query = $this->db->select('*')->from($table);
@@ -33,7 +35,9 @@ class arsip_model extends MY_Model {
 			'tgl_pembukuan'=>date('Y-m-d'),
 		);
 
+
 		$this->db->insert('arsip', $data);
+
 	}
 	// public function upload_lampiran(){
 		

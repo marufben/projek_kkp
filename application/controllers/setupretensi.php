@@ -11,6 +11,8 @@ class SetupRetensi extends MY_Controller{
 		}
 
 		$this->load->model('setupretensi_model');
+		$this->load->model('retensi_model');
+		$this->load->model('bapretensi_model');
 		$this->load->model('arsip_model');
 	}
 
@@ -78,24 +80,58 @@ class SetupRetensi extends MY_Controller{
 		$data['batas'] = (int)$retensi->batas;
 		$data['retensi'] = $data['tahun']-$data['batas'];
 
-		$sql = '
-				SELECT 
-					* 
-				FROM 
-					arsip 
+		$sql = "
+				SELECT
+					*
+				FROM
+					arsip
 				WHERE 
-					(
-						SELECT
-							EXTRACT(YEAR from tgl_expired) as tahun
-						FROM
-							arsip
-					) = \''.$data['retensi'].'\'
-		';
+					tgl_expired like '%".$data['retensi']."%'
+				";
+		// echo $sql;
+		// die();
+
 		$data['pesan'] = "Menampilkan data dari tahun";
 		$data['result'] = $this->setupretensi_model->custom_query($sql);
 		$data['html'] = $this->load->view('retensi/result', $data, true);
 		// $data['html'] = $this->template->load('kkp', 'retensi/result', $data);
 
 		echo json_encode($data);
+	}
+
+	public function retensidata()
+	{
+		$no_bap = $_POST['no_bap'];
+		$tgl = $_POST['tgl'];
+		$pejabat = $_POST['pejabat'];
+
+		$insert = array(
+			'no_bap' => $no_bap,
+			'tgl_bap' => $tgl,
+			'pejabat' => $pejabat
+			);
+		$this->bapretensi_model->insert($insert);
+		$id_bap = $this->bapretensi_model->last_id();
+
+		foreach ($_POST['id_arsip'] as $key => $val) {
+
+			$arsip = $this->arsip_model->getWhere('id', $val);
+			$arsip = $arsip->result_array()[0];
+			$arsip['id_arsip'] = $val;
+			$arsip['id_bap'] = $id_bap->id;
+
+			unset($arsip['id']);
+			// $fields[] = $arsip;
+
+			$this->retensi_model->insert($arsip);
+			// $this->arsip_model->delete($val);
+			echo $this->db->last_query()."<br>";
+
+		}
+		
+		// echo "<pre>";
+		// var_dump($fields);
+		// echo "</pre>";
+
 	}
 }

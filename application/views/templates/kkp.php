@@ -18,6 +18,9 @@
         <link rel="stylesheet" href="<?php echo base_url();?>assets/template2/css/plugins/rickshaw.min.css">
         <link rel="stylesheet" href="<?php echo base_url();?>assets/template2/css/plugins/morris.min.css">
 
+        <link rel="stylesheet" href="<?php echo base_url();?>assets/template2/dist/assets/plugins/jquery-icheck/skins/all.css">
+        <link rel="stylesheet" href="<?php echo base_url();?>assets/template2/css/plugins/jquery-icheck.min.css">
+
         <link rel="stylesheet" href="<?php echo base_url();?>assets/template2/assets/plugins/bootstrap-combobox/css/bootstrap-combobox.css">
 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -41,6 +44,9 @@
         <script src="<?php echo base_url();?>assets/template2/dist/assets/plugins/jquery-datatables/js/dataTables.bootstrap.js"></script>
 
         <script src="<?php echo base_url();?>assets/template2/assets/plugins/bootstrap-combobox/js/bootstrap-combobox.js"></script>
+
+        <script src="<?php echo base_url();?>assets/template2/dist/js/icheck.js"></script>
+        <script src="<?php echo base_url();?>assets/template2/dist/assets/plugins/jquery-icheck/icheck.min.js"></script>
 
         <style type="text/css">
         .iframeku{

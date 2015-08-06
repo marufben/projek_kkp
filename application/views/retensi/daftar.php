@@ -68,6 +68,7 @@
 				tahun: v
 			},
 			success: function(res){
+				// alert(res)
 				var val = JSON.parse(res);
 				$('#hasil').html(val.html)
 			}
