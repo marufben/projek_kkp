@@ -75,8 +75,8 @@ class Rak extends MY_Controller{
 	{
 		$id = $_POST['id_lemari'];
 
-		$lemari = $this->lemari_model->get_by_pk($id);
-		$max = $lemari->jml_rak;
+		// $lemari = $this->lemari_model->get_by_pk($id); // n'ga dipakai
+		// $max = $lemari->jml_rak; // n'ga dipakai
 
 		$raks = $this->lemari_model->custom_query('select urutan as urut from rak where id_lemari = \''.$id.'\'');
 		$c = sizeof($raks);
@@ -94,26 +94,39 @@ class Rak extends MY_Controller{
 				$row[] = (int)$value->urut;
 			}
 
-			for ($i=0; $i < $max; $i++) { 
+			// 
+			// pengecekan dengan jumlah maxximum rak
+			// for ($i=0; $i < $max; $i++) { 
+			// 	$new[] = (int)($i+1);
+			// }
+
+			// $res = array_diff($new, $row);
+			// foreach ($res as $k) {
+			// 	$hasil = $k;
+			// 	break;
+			// }
+			// pengecekan dengan jumlah maxximum rak
+
+			for ($i=0; $i < 100; $i++) { 
 				$new[] = (int)($i+1);
 			}
-
 			$res = array_diff($new, $row);
-			foreach ($res as $k) {
-				$hasil = $k;
+			foreach ($res as $key) {
+				# code...
+				$hasil = $key;
 				break;
 			}
 			
 			$rak = (int)$hasil;
 		}
 
-		$status = ($c == $max)?"true":"false";
+		// $status = ($c == $max)?"true":"false";
 
 		$result = array();
-		$result['max'] = $max;
+		// $result['max'] = $max;
 		$result['rak'] = $rak;
-		$result['av'] = $raks;
-		$result['full'] = $status;
+		// $result['av'] = $raks;
+		// $result['full'] = $status;
 
 		echo json_encode($result);
 	}

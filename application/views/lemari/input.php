@@ -27,12 +27,13 @@
                     	<textarea class="form-control" id="ket" name='ket'><?php echo $lemari->ket; ?></textarea>
                     </div>
              	</div>
-				<div class="form-group">
+             	
+				<!-- <div class="form-group">
 					<label for="inputEmail5" class="col-sm-2 control-label">Jumlah Rak</label>
 					<div class="col-sm-4">
 						<input type="text" class="form-control" id="jml_rak" name='jml_rak' value="<?php echo $lemari->jml_rak; ?>" placeholder="jumlah rak">
 					</div>
-				</div>
+				</div> -->
 	        </div>
 	        <div class="panel-footer">
 	            <div class="form-group">

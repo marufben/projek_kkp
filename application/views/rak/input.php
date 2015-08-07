@@ -71,28 +71,31 @@ var cekRak = function(a, v){
 			id_lemari: v
 		},
 		success: function(res){
-			var r = JSON.parse(res),
-				lRak = r.av.length,
-				i = 0,
-				html;
+			var r = JSON.parse(res)
+				// lRak = r.av.length,
+				// i = 0,
+				// html
+				;
 
-			html = '<label for="inputEmail5" class="col-sm-2 control-label">Urutan Rak yang sudah terdaftar</label>'+
-					'<div class="col-sm-4">';
-			for(i;i<lRak;i++){
-				html += '<label for="rak'+i+'" class="col-sm-2 control-label">'+r.av[i].urut+'</label>';
-			}
-				html += '<label for="rak'+i+'" class="col-sm-4 control-label" style="color: red">Max. Rak</label>';
-				html += '<label for="rak'+i+'" class="col-sm-2 control-label">'+r.max+'</label>';
-			html += '</div>';
+			// html = '<label for="inputEmail5" class="col-sm-2 control-label">Urutan Rak yang sudah terdaftar</label>'+
+			// 		'<div class="col-sm-4">';
+			// for(i;i<lRak;i++){
+			// 	html += '<label for="rak'+i+'" class="col-sm-2 control-label">'+r.av[i].urut+'</label>';
+			// }
+			// 	html += '<label for="rak'+i+'" class="col-sm-4 control-label" style="color: red">Max. Rak</label>';
+			// 	html += '<label for="rak'+i+'" class="col-sm-2 control-label">'+r.max+'</label>';
+			// html += '</div>';
 
-			if(r.full == 'true'){
-				alert('Maaf Rak Sudah Penuh')
-				location.reload();
-			}else{			
-				$('#urutan').val(r.rak)
-				$('#resRak').html(html)
-			}
-			console.log(r.full);
+			// if(r.full == 'true'){
+			// 	alert('Maaf Rak Sudah Penuh')
+			// 	location.reload();
+			// }else{			
+				// $('#urutan').val(r.rak)
+				// $('#resRak').html(html)
+			// }
+			$('#urutan').val(r.rak)
+			// alert(r.rak)
+			console.log(r.rak);
 		}
 	})
 
