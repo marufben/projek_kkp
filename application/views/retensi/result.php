@@ -152,13 +152,31 @@ $(document).ready(function(){
         });
 })
 
+var alrt = function(message, cb) {
+    alert(message);
+    if (typeof cb === "function") {
+        cb();
+    }
+}
+
 var retensi = function(){
     var checked = $("input[type=checkbox]:checked"),
         l = checked.length;
 
     if(l<=0){
-        alert('Belum memilih')
+        $('.modal').addClass("no-modal");
+        alrt('Belum memilih.', function(){
+            $('#hapusModal').on('show.bs.modal', function () {
+                if($(this).hasClass('no-modal')) {
+                    return false;                    
+                }else{
+                    return true;                    
+                }
+            });
+        })
+
     }else{
+        $('.modal').removeClass("no-modal");
         var html = '';
         checked.each(function(){
             // html += '<input name="kode_arsip[]" type="hidden" value="'+$(this).val()+'">';
