@@ -311,15 +311,25 @@
 	        						  +"<td><input type='text' id='tgl_pinjam' name='tgl_pinjam' disabled='disabled' value='"+ c.yyyymmdd() +"' class='form-control'></td>"
 	        						  +"<td><input type='text' id='tgl_kembali' name='tgl_kembali' disabled='disabled' value='"+ d.yyyymmdd() +"' class='form-control'></td>"
 	        						  +"</tr>";
-	        				$("#tmp").append(row); 
+	        				var row_pesan = "<tr>"
+	        						  +"<td colspan='5'>"
+	        						  +"Data tidak tersedia/kuota pinjam Anda sudah penuh!"
+	        						  +"</td>"
+	        						  +"</tr>";
 
 	        				$.ajax({
 				                url:"<?php echo site_url('sirkulasi/tmp');?>",
 				                type:"POST",
 				                data:"anggota="+vid_anggota+"&aturan="+vaturan_peminjaman+"&item="+vitem_code+"&pinjam="+vtgl_pinjam+"&kembali="+vtgl_hrs_kembali,
-				                //dataType: "json",
+				                dataType: "json",
 				                success: function(data){
-				                	//alert("Sukses!");
+				                	var x = data.pesan;
+				                	alert(data.pesan);
+				                	if(x == 0){
+				                		$("#tmp").append(row); 
+				                	}else{
+				                		$("#tmp").append(row_pesan);
+				                	}
 				                }
 				            });
 				            

@@ -124,9 +124,46 @@ class Peminjaman_model extends MY_Model{
 		return $query->result();
 	}
 
+	function getDataKeterlambatan($kode)
+	{
+		$sql = "
+				SELECT 
+					b.title,
+					a.*,
+					x.nama
+				FROM
+					peminjaman as a,
+					biblio as b,
+					item as i,
+					anggota as x
+				WHERE
+					a.item_code = i.item_code
+				AND
+					i.biblio_id = b.biblio_id
+				AND 
+					(a.id_anggota LIKE '".$kode."' OR x.nama LIKE '".$kode."')";
+
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+
 	function cekJmlPinjaman($kode){
         $sql = "
-        		SELECT COUNT(id_anggota) as jml_pinjam FROM peminjaman WHERE id_anggota = '".$kode."'";
+        		SELECT COUNT(id_anggota) as jml_pinjam FROM peminjaman WHERE id_anggota = '".$kode."' AND tgl_kembali = '0000-00-00'";
+		$query = $this->db->query($sql);
+		return $query->result();
+    }
+
+    function cekJmlPinjamanTmp($kode){
+        $sql = "
+        		SELECT COUNT(id_anggota) as jml_pinjam FROM peminjaman_tmp WHERE id_anggota = '".$kode."'";
+		$query = $this->db->query($sql);
+		return $query->result();
+    }
+
+    function cekAdaBukuTmp($kode){
+        $sql = "
+        		SELECT item_code FROM peminjaman_tmp WHERE item_code = '".$kode."'";
 		$query = $this->db->query($sql);
 		return $query->result();
     }

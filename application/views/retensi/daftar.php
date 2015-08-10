@@ -16,13 +16,18 @@
 	            	<div class="form-group">
 						<label for="inputEmail5" class="col-sm-2 control-label">Dasar Hukum</label>
 						<div class="col-sm-4">
-							<label for="inputEmail5" class="col-sm-4 control-label"><?php echo $list->legal;?></label>
+							<!-- <label for="inputEmail5" class="col-sm-4 control-label"> -->
+								<?php echo $list->legal;?>
+							<!-- </label> -->
 						</div>
 					</div>
 	            	<div class="form-group">
 						<label for="inputEmail5" class="col-sm-2 control-label">Batas Tahun Retensi</label>
 						<div class="col-sm-4">
-							<label for="inputEmail5" class="col-sm-4 control-label"><?php echo $list->batas;?> Tahun&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+							<!-- <label for="inputEmail5" class="col-sm-4 control-label"> -->
+								<?php echo $list->batas;?> Tahun
+								<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+							<!-- </label> -->
 						</div>
 					</div>
 

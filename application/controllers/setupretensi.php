@@ -124,8 +124,8 @@ class SetupRetensi extends MY_Controller{
 			// $fields[] = $arsip;
 
 			$this->retensi_model->insert($arsip);
-			// $this->arsip_model->delete($val);
-			echo $this->db->last_query()."<br>";
+			$this->arsip_model->delete($val);
+			// echo $this->db->last_query()."<br>";
 
 		}
 		
@@ -133,5 +133,12 @@ class SetupRetensi extends MY_Controller{
 		// var_dump($fields);
 		// echo "</pre>";
 
+	}
+
+	public function sudah()
+	{
+		$data['title'] = 'Daftar Arsip Sudah Retensi';
+		$data['sudah'] = $this->retensi_model->getAll();
+		$this->template->load('kkp', 'retensi/sudah', $data);
 	}
 }

@@ -1,3 +1,6 @@
 public/*
 application/core/*
+application/controllers/OLD
+application/models/OLD
+application/views/OLD
 application/config/database.php
