@@ -16,7 +16,7 @@ class arsip_model extends MY_Model {
 		return $query->get()->result();
 	}
 	// public function get_table
-	public function insert_arsip(){
+	public function insert_arsip($c){
 		$kapal=explode('|',$this->input->post('kapal'));
 		$jenis_ijin=explode('|',$this->input->post('jenis_ijin'));
 		$data=array(
@@ -30,11 +30,18 @@ class arsip_model extends MY_Model {
 			'tgl_terbit'=>$this->input->post('terbit'),
 			'tgl_expired'=>$this->input->post('expired'),
 			'kode_arsip'=>$this->input->post('kode_arsip'),
-			// 'jumlah_halaman'=>$this->input->post(''),
+			'jumlah_halaman'=>$c,
 			'no_pembukuan'=>$this->input->post('no_pembukuan'),
 			'tgl_pembukuan'=>date('Y-m-d'),
+			'id_lemari' => $this->input->post('id_lemari'),
+			'id_rak' => $this->input->post('id_rak'),
+			'id_box' => $this->input->post('id_box'),
 		);
 
+		// echo "<pre>";
+		// var_dump($data);
+		// echo "</pre>";
+		// die();
 
 		$this->db->insert('arsip', $data);
 
@@ -61,6 +68,9 @@ class arsip_model extends MY_Model {
 				'jumlah_halaman' => 'Status',
 				'no_pembukuan' => 'Status',
 				'tgl_pembukuan' => 'Status',
+				'id_lemari' => 'Id Lemari',
+				'id_rak' => 'Id Rak',
+				'id_box' => 'Id Box',
 			);
 	}
 }

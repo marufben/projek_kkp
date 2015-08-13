@@ -70,6 +70,79 @@ class SetupRetensi extends MY_Controller{
 		$this->template->load('kkp', 'retensi/daftar', $data);
 	}
 
+	public function all()
+	{
+		$data['title'] = 'Daftar Semua Arsip';
+		$this->template->load('kkp', 'retensi/all', $data);
+	}
+
+	public function datatable()
+	{
+		$requestData= $_REQUEST;
+		$columns = array( 
+			0 =>'id', 
+			1 => 'kode_arsip',
+			2 => 'tgl_terbit',
+			3 => 'tgl_expired'
+		);
+
+		// getting total number records without any search
+		$sql = "SELECT id, kode_arsip, tgl_terbit, tgl_expired ";
+		$sql.=" FROM arsip";
+
+		$query = $this->arsip_model->custom_query_data($sql);
+
+		$totalData = $query->num_rows();
+		$totalFiltered = $totalData;  // when there is no search parameter then total number rows = total number filtered rows.
+
+		if( !empty($requestData['search']['value']) ) {
+			// if there is a search parameter
+			$sql = "SELECT id, kode_arsip, tgl_terbit, tgl_expired ";
+			$sql.=" FROM arsip";
+			$sql.=" WHERE kode_arsip LIKE '".$requestData['search']['value']."%' ";    // $requestData['search']['value'] contains search parameter
+			$sql.=" OR tgl_terbit LIKE '".$requestData['search']['value']."%' ";
+			$sql.=" OR tgl_expired LIKE '".$requestData['search']['value']."%' ";
+
+			$query = $this->arsip_model->custom_query_data($sql);
+
+			$totalFiltered = $query->num_rows(); // when there is a search parameter then we have to modify total number filtered rows as per search result without limit in the query 
+			
+			$sql.=" ORDER BY ". $columns[$requestData['order'][0]['column']]."   ".$requestData['order'][0]['dir']."   LIMIT ".$requestData['start']." ,".$requestData['length']."   "; // $requestData['order'][0]['column'] contains colmun index, $requestData['order'][0]['dir'] contains order such as asc/desc , $requestData['start'] contains start row number ,$requestData['length'] contains limit length.
+			$query = $this->arsip_model->custom_query_data($sql);
+			
+		} else {	
+			$sql = "SELECT id, kode_arsip, tgl_terbit, tgl_expired ";
+			$sql.=" FROM arsip";
+			$sql.=" ORDER BY ". $columns[$requestData['order'][0]['column']]."   ".$requestData['order'][0]['dir']."   LIMIT ".$requestData['start']." ,".$requestData['length']."   ";
+			$query = $this->arsip_model->custom_query_data($sql);
+		}
+
+		$data = array();
+
+		$no = $requestData['start'];
+		foreach ($query->result() as $key => $value) {
+			$no++;
+			$nestedData=array(); 
+			$nestedData[] = $no;
+			// $nestedData[] = $value->id;
+			$nestedData[] = $value->kode_arsip;
+			$nestedData[] = date("d-m-Y", strtotime($value->tgl_terbit));
+			$nestedData[] = date("d-m-Y", strtotime($value->tgl_expired));
+			$nestedData[] = '<a class="btn btn-default">Detail</a>';
+			
+			$data[] = $nestedData;
+		}
+
+		$json_data = array(
+					"draw"            => intval( $requestData['draw'] ),   // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw. 
+					"recordsTotal"    => intval( $totalData ),  // total number of records
+					"recordsFiltered" => intval( $totalFiltered ), // total number of records after searching, if there is no searching then totalFiltered = totalData
+					"data"            => $data   // total data array
+					);
+
+		echo json_encode($json_data);
+	}
+
 	public function cari()
 	{
 		$tahun = $_POST['tahun'];
@@ -128,7 +201,7 @@ class SetupRetensi extends MY_Controller{
 			// echo $this->db->last_query()."<br>";
 
 		}
-		
+		redirect(site_url('setupretensi/daftar'));
 		// echo "<pre>";
 		// var_dump($fields);
 		// echo "</pre>";
@@ -138,7 +211,17 @@ class SetupRetensi extends MY_Controller{
 	public function sudah()
 	{
 		$data['title'] = 'Daftar Arsip Sudah Retensi';
-		$data['sudah'] = $this->retensi_model->getAll();
+		$sql = '
+				SELECT 
+					a.*,
+					b.no_bap
+				FROM 
+					dropretensi as a
+				INNER JOIN
+					bap_retensi as b
+				ON
+					b.id = a.id_bap';
+		$data['sudah'] = $this->retensi_model->custom_query($sql);
 		$this->template->load('kkp', 'retensi/sudah', $data);
 	}
 }

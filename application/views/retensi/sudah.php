@@ -24,16 +24,13 @@
                                 No
                             </th>
                             <th>
+                                Kode Arsip
+                            </th>
+                            <th>
                                 Dasar Hukum
                             </th>
                             <th>
-                                Batas Retensi
-                            </th>
-                            <th>
-                                Status
-                            </th>
-                            <th>
-                                Aksi
+                                Expired
                             </th>
                         </tr>
                     </thead>
@@ -47,23 +44,13 @@
                                 <?php echo ($no+1); ?>
                             </td>
                             <td>
-                                <?php //echo $value->legal; ?>
+                                <?php echo $value->kode_arsip; ?>
                             </td>
                             <td>
-                                <?php //echo $value->batas; ?>
+                                <?php echo $value->no_bap; ?>
                             </td>
                             <td>
-                                <?php //echo ($value->status == 1)?"Aktif":"Tidak Aktif"; ?>
-                            </td>
-                            <td width="20%">
-                                <!-- <a class="btn" href="<?php echo base_url()."setupretensi/edit/".$value->id;?>">
-                                    <i class="icon-edit"></i>
-                                    Edit
-                                </a>
-                                <button class="btn btn-danger" onclick="kirimId('<?php echo $value->id;?>','<?php echo $value->legal;?>')" data-target="#hapusModal" data-toggle="modal">
-                                    <i class="icon-trash"></i>
-                                    Hapus
-                                </button> -->
+                                <?php echo date("d-m-Y", strtotime($value->tgl_expired)); ?>
                             </td>
                         </tr>
                         <?php $no++; } ?>

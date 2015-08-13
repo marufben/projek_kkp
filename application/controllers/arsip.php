@@ -65,7 +65,7 @@ class Arsip extends CI_Controller{
 
 			$config['upload_path'] = $rootdir;
 			$config['allowed_types'] = "gif|jpg|png|jpeg|pdf|doc|xml";
-			$config['max_size']	= '1000KB';
+			$config['max_size']	= '100000';
 			$config['max_width']  = '1024';
 			$config['max_height']  = '768';
 
@@ -97,9 +97,9 @@ class Arsip extends CI_Controller{
 
 		    }
 
-		    $this->arsip_model->insert_arsip();
+		    $this->arsip_model->insert_arsip($cpt='');
 		    $this->lampiranarsip_model->insertbatchData($data_lampiran);
-
+		    // die();
 		    redirect(site_url('arsip'));
         }else{
         	echo "string";

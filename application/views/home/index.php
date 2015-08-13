@@ -1,10 +1,19 @@
-<div class="form-group text-right">
-    <button type="button" class="btn btn-primary" onclick="previous()">Prev</button>
-    <button type="button" class="btn btn-primary" onclick="next()">Next</button>
-</div>
+
 <div id="carga">
     <embed src="<?php echo base_url();?>assets/img/5.gif" class="centrar" />
 </div>
+<!-- <div class="form-group text-right">
+    <button type="button" class="btn btn-primary" onclick="previous()">Prev</button>
+    <button type="button" class="btn btn-primary" onclick="next()">Next</button> -->
+
+    <!-- <input type="button" class="btn btn-success" value="Zoom in" onclick="zoomin()"/>
+    <input type="button" class="btn btn-success" value="Zoom out" onclick="zoomout()"/> -->
+
+    <!-- 
+    <input type="button" class="btn btn-success" value="Zoom in" onclick="if(document.body.style.zoom!=0) document.body.style.zoom*=1.2; else document.body.style.zoom=1.2;"/>
+    <input type="button" class="btn btn-success" value="Zoom out" onclick="if(document.body.style.zoom!=0) document.body.style.zoom*=0.8; else document.body.style.zoom=0.8;"/> -->
+
+<!-- </div> -->
 <div id="imagen-oculta2" />
 
     <div class="magazine">
@@ -15,6 +24,20 @@
 
 
 <script type="text/javascript">
+    
+    var zoomin = function(){
+        if(document.querySelector('#imagen-oculta2').style.zoom!=0) 
+            document.querySelector('#imagen-oculta2').style.zoom*=1.2; 
+        else 
+            document.querySelector('#imagen-oculta2').style.zoom=1.2;
+    }
+
+    var zoomout = function(){
+        if(document.querySelector('#imagen-oculta2').style.zoom!=0) 
+            document.querySelector('#imagen-oculta2').style.zoom*=0.8; 
+        else 
+            document.querySelector('#imagen-oculta2').style.zoom=0.8;
+    }
 
     PDFJS.disableWorker = true;
     var pdfDoc, scale, file, np, filename;
@@ -24,7 +47,7 @@
         filename = "<?php echo $nama;?>";
 
         // if(filename == ''){ alert('Nama File Tidak Boleh Kosong'); return false;}
-
+        var test;
         file = getUrlVars()["file"];
         if (file == null)
             file = '<?php echo base_url();?>public/FILES/'+filename;

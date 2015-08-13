@@ -20,19 +20,20 @@
 
         <link rel="stylesheet" href="<?php echo base_url();?>assets/template2/dist/assets/plugins/jquery-icheck/skins/all.css">
         <link rel="stylesheet" href="<?php echo base_url();?>assets/template2/css/plugins/jquery-icheck.min.css">
+        <link rel="stylesheet" href="<?php echo base_url();?>assets/template2/css/plugins/dataTables.bootstrap.css">
 
         <link rel="stylesheet" href="<?php echo base_url();?>assets/template2/assets/plugins/bootstrap-combobox/css/bootstrap-combobox.css">
+        <link rel="stylesheet" href="<?php echo base_url();?>assets/css/jquery-ui.css">
 
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-
-        <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/pdf.js"></script>
+        <!--<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/pdf.js"></script>-->
         <script src="<?php echo base_url();?>assets/template2/assets/libs/jquery/jquery.min.js"></script>
 
         <script src="<?php echo base_url();?>assets/template2/dist/assets/libs/jquery-ui/minified/jquery-ui.min.js"></script>
 
         <!--<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/jquery-1.7.1.min.js"></script>-->
-        <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/turn.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/tools.js"></script>
+
+        <!--<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/turn.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/tools.js"></script>-->
         <script type="text/javascript" src="<?php echo base_url();?>assets/scripts/kkp.js"></script>
         
         <script src="<?php echo base_url();?>assets/template2/assets/bs3/js/bootstrap.min.js"></script>
@@ -53,6 +54,12 @@
             width: 100%;
             height: 600px;
             border-width:0 
+        }
+        .gif {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -50px 0px 0px -50px;
         }
         </style>
 

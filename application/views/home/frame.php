@@ -85,8 +85,27 @@
                 </div>
             </div>
             <div class="panel-body">
-            	<div class="form-group text-right">
-				    <button type="button" id="comp" class="btn btn-warning" value="open">Bandingkan</button>
+            	<div class="row">
+	            	<div class="col-md-4">
+	            		<div class="form-group text-left">
+	    	        		<button type="button" class="btn btn-primary" onclick="previous('frame')">Prev</button>
+	    					<button type="button" class="btn btn-success" onclick="zoomin('frame')"><i class="fa fa-search-plus"></i> Zoom In</button>
+						</div>
+					</div>
+
+	            	<div class="col-md-4">
+	            		<div class="form-group text-center">
+					    	<button type="button" id="comp" class="btn btn-warning" value="open">Bandingkan</button>
+						</div>
+					</div>
+
+	            	<div class="col-md-4">
+	            		<div class="form-group text-right">
+		    				<button type="button" class="btn btn-success" onclick="zoomout('frame')"><i class="fa fa-search-minus"></i> Zoom Out</button>
+		    				<button type="button" class="btn btn-primary" onclick="next('frame')">Next</button>
+						</div>
+					</div>
+
 				</div>
 	            <iframe src="<?php echo base_url();?>home/frame" style="display: none" name="iframeku" id="frame" class="iframeku col-sm-6" frameborder="0"></iframe>
             </div>
@@ -181,6 +200,28 @@
                 </div>
             </div>
             <div class="panel-body">
+            	<div class="row">
+	            	<div class="col-md-4">
+	            		<div class="form-group text-left">
+	    	        		<button type="button" class="btn btn-primary" onclick="previous('frame2')">Prev</button>
+	    					<button type="button" class="btn btn-success" onclick="zoomin('frame2')"><i class="fa fa-search-plus"></i> Zoom In</button>
+						</div>
+					</div>
+
+	            	<div class="col-md-4">
+	            		<div class="form-group text-center">
+					    	&nbsp;
+						</div>
+					</div>
+
+	            	<div class="col-md-4">
+	            		<div class="form-group text-right">
+		    				<button type="button" class="btn btn-success" onclick="zoomout('frame2')"><i class="fa fa-search-minus"></i> Zoom Out</button>
+		    				<button type="button" class="btn btn-primary" onclick="next('frame2')">Next</button>
+						</div>
+					</div>
+
+				</div>
 	            <iframe src="<?php echo base_url();?>home/frame" style="display: none" name="iframeku2" id="frame2" class="iframeku col-sm-6" frameborder="0"></iframe>
             </div>
         </div>
@@ -188,6 +229,105 @@
 </div>
 <!-- bandingkan file -->
 <script type="text/javascript">
+
+var frameBody = $('body', $('#frame')[0].contentWindow.document);
+var i = 0.6;
+var zoomin = function(name){
+	var z = getFrameContents(name).querySelector('#imagen-oculta2');
+	if(isChrome){
+		i = i + 0.1;
+		z.style.WebkitTransform = 'scale('+i+')'; 	
+		z.style.WebkitTransformOrigin = '0 0';
+	}
+
+	if(isFirefox){
+		i = i + 0.1;
+		z.style.MozTransform = 'scale('+i+')'; 	
+		z.style.MozTransformOrigin = '0 0';
+	}
+
+	if(isSafari){
+		i = i + 0.1;
+		z.style.Transform = 'scale('+i+')'; 	
+		z.style.TransformOrigin = '0 0';
+	}
+
+	if(isOpera){
+		i = i + 0.1;
+		z.style.OTransform = 'scale('+i+')'; 	
+		z.style.OTransformOrigin = '0 0';
+	}
+
+	if(isIE){
+		if(z.style.zoom!=0) 
+	        z.style.zoom*=1.2; 
+	    else 
+	        z.style.zoom=1.2;
+	}
+}
+
+var zoomout = function(name){
+	var z = getFrameContents(name).querySelector('#imagen-oculta2');
+    if(isChrome){
+		i = i - 0.1;
+		z.style.WebkitTransform = 'scale('+i+')'; 	
+		z.style.WebkitTransformOrigin = '0 0';
+	}
+
+	if(isFirefox){
+		i = i - 0.1;
+		z.style.MozTransform = 'scale('+i+')'; 	
+		z.style.MozTransformOrigin = '0 0';
+	}
+
+	if(isSafari){
+		i = i - 0.1;
+		z.style.Transform = 'scale('+i+')'; 	
+		z.style.TransformOrigin = '0 0';
+	}
+
+	if(isOpera){
+		i = i - 0.1;
+		z.style.OTransform = 'scale('+i+')'; 	
+		z.style.OTransformOrigin = '0 0';
+	}
+
+	if(isIE){
+		if(z.style.zoom!=0) 
+	        z.style.zoom*=1.2; 
+	    else 
+	        z.style.zoom=1.2;
+	}
+}
+
+var previous = function(name) {
+
+	var z = getFrameContents(name).querySelectorAll('.magazine');
+    document.getElementById(name).contentWindow.previous(z);
+
+}
+
+var next = function(name) {
+
+	var z = getFrameContents(name).querySelectorAll('.magazine');
+    document.getElementById(name).contentWindow.next(z);
+}
+
+var getFrameContents = function(name){
+	var iFrame =  document.getElementById(name);
+	var iFrameBody;
+	if ( iFrame.contentDocument ) 
+	{ // FF
+		iFrameBody = iFrame.contentDocument.getElementsByTagName('body')[0];
+	}
+	else if ( iFrame.contentWindow ) 
+	{ // IE
+		iFrameBody = iFrame.contentWindow.document.getElementsByTagName('body')[0];
+	}
+	// alert(iFrameBody.innerHTML);
+	return iFrameBody;
+}
+
 $(function(){
 
 	// tampil dokumen

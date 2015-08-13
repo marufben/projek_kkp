@@ -27,10 +27,10 @@
                                 No Arsip
                             </th>
                             <th>
-                                Tahun Terbit
+                                Tanggal Terbit
                             </th>
                             <th>
-                                Tahun Expired
+                                Tanggal Expired
                             </th>
                             <th>
                                 Aksi
@@ -50,10 +50,10 @@
                                 <?php echo $value->kode_arsip; ?>
                             </td>
                             <td>
-                                <?php echo $value->tgl_terbit; ?>
+                                <?php echo date("d-m-Y", strtotime($value->tgl_terbit)); ?>
                             </td>
                             <td>
-                                <?php echo $value->tgl_expired; ?>
+                                <?php echo date("d-m-Y", strtotime($value->tgl_expired)); ?>
                             </td>
                             <td width="20%">
                                 <a class="btn btn-default" href="<?php //echo base_url()."setupretensi/edit/".$value->id;?>">

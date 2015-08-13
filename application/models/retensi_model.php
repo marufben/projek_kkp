@@ -28,7 +28,10 @@ class Retensi_Model extends MY_Model{
 				'no_pembukuan' => 'No Pembukuan',
 				'tgl_pembukuan' => 'Tanggal Pembukuan',
 			    "id_arsip" => "Id Arsip",
-			    "id_bap" => "Id BAP Retensi"
+			    "id_bap" => "Id BAP Retensi",
+			    'id_lemari' => 'Id Lemari',
+				'id_rak' => 'Id Rak',
+				'id_box' => 'Id Box',
 			);
 	}
 

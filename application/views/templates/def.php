@@ -5,7 +5,8 @@
     <link type="text/css" href="<?php echo base_url();?>assets/css/main.css" rel="stylesheet" media="screen" />
 
     <link rel="stylesheet" href="<?php echo base_url();?>assets/template2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<!--     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/jquery-ui.css">
 
     <script src="<?php echo base_url();?>assets/template2/assets/libs/jquery/jquery.min.js"></script>
     <script src="<?php echo base_url();?>assets/template2/dist/assets/libs/jquery-ui/minified/jquery-ui.min.js"></script>
